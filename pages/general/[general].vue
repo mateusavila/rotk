@@ -20,7 +20,7 @@ useHead({
       <div class="w-full" v-if="generalInfo">
       <div class="w-full h-[180px] bg-slate-200 rounded-[10px] p-[20px] flex items-center flex-wrap content-center justify-between">
         <div class="w-[150px]">
-          <img :src="`/${generalInfo.avatar}`" :alt="generalInfo.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow">
+          <NuxtImg :src="`/${generalInfo.avatar}`" :alt="generalInfo.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow" />
         </div>
         <div class="w-[calc(100%-180px)]">
           <h1 class="text-[40px] font-['Aleo'] font-black w-full m-0">{{ generalInfo.name }}</h1>
