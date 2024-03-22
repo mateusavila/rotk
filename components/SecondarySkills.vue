@@ -10,7 +10,7 @@ const {} = defineProps<{
 </script>
 
 <template>
-  <div class="grid my-[20px] grid-cols-2 gap-[10px] w-full">
+  <div class="grid my-[20px] lg:grid-cols-2 md:grid-cols-6 sm:grid-cols-3 grid-cols-1 gap-[10px] w-full">
     <div class="bg-slate-50 p-[10px] flex items-center content-center justify-center flex-wrap rounded-[10px]">
       <p class="text-[32px] font-bold w-full text-center leading-[32px] text-[#ffc700]">{{ luck }}</p>
       <p class="text-[14px] font-['Aleo'] w-full text-center text-[#ffc700]">Luck</p>

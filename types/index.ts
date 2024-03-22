@@ -6,6 +6,12 @@ export interface FamousGenerals {
   height: number
 }
 
+export interface NamesGenerals {
+  key: string
+  label: string
+  avatar: string
+}
+
 export interface GeneralData {
   id: string
   name: string

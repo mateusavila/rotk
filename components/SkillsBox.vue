@@ -5,7 +5,7 @@ const {} = defineProps<{
 </script>
 
 <template>
-  <div class="w-full flex gap-[5px] items-center mt-[10px]">
+  <div class="w-full flex gap-[5px] items-center mt-[10px] flex-wrap">
     <div v-for="item in skills" :key="item">
       <template v-if="item.toLowerCase() === 'foreign'">
         <UTooltip text="Foreign" :popper="{ arrow: true }">

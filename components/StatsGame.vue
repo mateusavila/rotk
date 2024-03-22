@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { GeneralData } from '~/types'
+import { useWindowSize } from '@vueuse/core'
+
+const { width } = useWindowSize()
 const { stats } = defineProps<{ 
   stats: GeneralData['stats'] 
 }>()
@@ -42,12 +45,12 @@ const tabs = [
 
 <template>
   <div class="w-full">
-    <UTabs :items="tabs">
+    <UTabs :items="tabs" :orientation="width > 800 ? 'horizontal' : 'vertical'">
       <template #item="{ item }">
         <UCard>
           <template v-if="item.key === 'rotk1'">
             <p v-if="!stats.rotk1">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-3 justify-center" v-if="stats.rotk1">
+            <div class="w-full gap-[10px] grid sm:grid-cols-3 justify-center" v-if="stats.rotk1">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk1.intelligence }}</p>
                 <p class="text-[12px] text-center">Intelligence</p>
@@ -64,7 +67,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk2'">
             <p v-if="!stats.rotk2">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-3 justify-center" v-if="stats.rotk2">
+            <div class="w-full gap-[10px] grid sm:grid-cols-3 justify-center" v-if="stats.rotk2">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk2.intelligence }}</p>
                 <p class="text-[12px] text-center">Intelligence</p>
@@ -81,7 +84,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk3'">
             <p v-if="!stats.rotk3">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-4 justify-center" v-if="stats.rotk3">
+            <div class="w-full gap-[10px] grid sm:grid-cols-4 justify-center" v-if="stats.rotk3">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk3.intelligence }}</p>
                 <p class="text-[12px] text-center">Intelligence</p>
@@ -102,7 +105,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk4'">
             <p v-if="!stats.rotk4">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-5 justify-center" v-if="stats.rotk4">
+            <div class="w-full gap-[10px] grid sm:grid-cols-5 justify-center" v-if="stats.rotk4">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk4.lead }}</p>
                 <p class="text-[12px] text-center">Lead</p>
@@ -127,7 +130,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk7'">
             <p v-if="!stats.rotk7">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-4 justify-center" v-if="stats.rotk7">
+            <div class="w-full gap-[10px] grid sm:grid-cols-4 justify-center" v-if="stats.rotk7">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk7.intelligence }}</p>
                 <p class="text-[12px] text-center">Intelligence</p>
@@ -148,7 +151,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk8'">
             <p v-if="!stats.rotk8">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-4 justify-center" v-if="stats.rotk8">
+            <div class="w-full gap-[10px] grid sm:grid-cols-4 justify-center" v-if="stats.rotk8">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk8.intelligence }}</p>
                 <p class="text-[12px] text-center">Intelligence</p>
@@ -169,7 +172,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk9'">
             <p v-if="!stats.rotk9">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-4 justify-center" v-if="stats.rotk9">
+            <div class="w-full gap-[10px] grid sm:grid-cols-4 justify-center" v-if="stats.rotk9">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk9.intelligence }}</p>
                 <p class="text-[12px] text-center">Intelligence</p>
@@ -190,7 +193,7 @@ const tabs = [
           </template>
           <template v-if="item.key === 'rotk10'">
             <p v-if="!stats.rotk10">This General didn't appear in this game.</p>
-            <div class="w-full gap-[10px] grid grid-cols-5 justify-center" v-if="stats.rotk10">
+            <div class="w-full gap-[10px] grid sm:grid-cols-5 justify-center" v-if="stats.rotk10">
               <div class="flex flex-wrap w-full items-center content-center justify-center">
                 <p class="text-[40px] w-full leading-[40px] text-center font-['Aleo'] font-black">{{ stats.rotk10.lead }}</p>
                 <p class="text-[12px] text-center">Lead</p>

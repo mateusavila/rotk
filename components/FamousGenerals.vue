@@ -11,7 +11,7 @@ const { title, list } = defineProps<ComponentInterface>()
 <template>
   <div class="w-full my-[50px]">
     <h2 class="font-['Aleo'] text-[24px] font-semibold color-slate-900 mb-[20px]">{{ title }}</h2>
-    <div class="w-full grid grid-cols-4 gap-[20px]">
+    <div class="w-full grid lg:grid-cols-4 sm:grid-cols-2 gap-[20px]">
       <ULink :to="slug" v-for="{ image, name, width, height, slug }, index in list" :key="index">
         <UCard  :ui="{ base: 'relative', body: { padding: 'p-0 sm:p-0' }}">
           <NuxtImg :src="image" :alt="name" :width="width" :height="height" loading="lazy" class="w-full h-full block z-[1]" />

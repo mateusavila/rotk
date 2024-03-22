@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import type { FamousGenerals } from '~/types'
+import { useStorage } from '@vueuse/core'
+import type { FamousGenerals, NamesGenerals } from '~/types'
 
 useHead({
   title: 'Romance of Three Kingdoms Database'
 })
 
 const rulers: FamousGenerals[] = [
-{
+  {
     name: 'Cao Cao',
     slug: '/general/cao-cao',
     image: 'cao-cao.webp',
@@ -293,11 +294,25 @@ const warriors: FamousGenerals[] = [
     height: 256
   }
 ]
+
+const namesList = async (): Promise<NamesGenerals[]> => {
+  const { data } = await $fetch('/api/names')
+  if (!data) {
+    return []
+  }
+  return data.map((item) => ({
+    label: item.label ?? '',
+    key: item.key ?? '',
+    avatar: item.avatar ?? ''
+  }))
+}
+const names = useStorage<NamesGenerals[]>('names', await namesList())
+
 </script>
 
 <template>
   <NuxtLayout name="default">
-    <Banner />
+    <Banner :list="names" />
     <FamousGenerals title="Warlords" :list="rulers" />
     <FamousGenerals title="Brilliant Advisors" :list="advisors" />
     <FamousGenerals title="Might Warriors" :list="warriors" />
