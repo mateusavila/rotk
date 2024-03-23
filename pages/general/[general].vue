@@ -5,10 +5,6 @@ import type { GeneralData, NamesGenerals } from '~/types'
 const { params: { general } } = useRoute()
 const { pending, data: generalInfo } = await useLazyAsyncData('data', () => $fetch<GeneralData>(`/api/general/${general}`))
 
-useHead({
-  title: (generalInfo.value && `${generalInfo.value.name} | Romance of Three Kingdoms Database`) ?? 'Romance of Three Kingdoms Database'
-})
-
 const names = useStorage<NamesGenerals[]>('names', [])
 </script>
 
