@@ -109,9 +109,9 @@ const advisors: FamousGenerals[] = [
     height: 256
   },
   {
-    name: 'Xun Yu',
-    slug: '/general/xun-yu',
-    image: 'xun-yu.jpg',
+    name: 'Xun You',
+    slug: '/general/xun-you',
+    image: 'xun-you.jpg',
     width: 256,
     height: 256
   },

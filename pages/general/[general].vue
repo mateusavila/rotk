@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { GeneralData } from '~/types'
+import { useStorage } from '@vueuse/core'
+import type { GeneralData, NamesGenerals } from '~/types'
 
 const { params: { general } } = useRoute()
 const { pending, data: generalInfo } = await useLazyAsyncData('data', () => $fetch<GeneralData>(`/api/general/${general}`))
@@ -7,6 +8,8 @@ const { pending, data: generalInfo } = await useLazyAsyncData('data', () => $fet
 useHead({
   title: (generalInfo.value && `${generalInfo.value.name} | Romance of Three Kingdoms Database`) ?? 'Romance of Three Kingdoms Database'
 })
+
+const names = useStorage<NamesGenerals[]>('names', [])
 </script>
 
 <template>
@@ -53,6 +56,10 @@ useHead({
             </div>
           </div>
           <div class="lg:w-[calc(30%-20px)] w-full">
+            <div class="w-full mb-[20px]" v-if="names">
+              <h2 class="font-['Aleo'] text-[24px] font-black">Search</h2>
+              <Search :list="names" :fullsize="true" base-url="../" />
+            </div>
             <div class="w-full mb-[20px]">
               <h2 class="font-['Aleo'] text-[24px] font-black">Secondary Skills</h2>
               <SecondarySkills 
