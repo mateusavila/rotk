@@ -5,7 +5,7 @@ const { rating } = defineProps<{
 </script>
 
 <template>
-  <div class="w-[120px] h-[120px] absolute top-[50%] right-[20px] rounded-[20px] translate-y-[-50%] flex items-center content-center justify-center shadow"
+  <div class="lg:w-[120px] w-[40px] h-[40px] lg:h-[120px] absolute lg:top-[50%] sm:top-auto top-[30px] lg:right-[20px] sm:right-auto right-[30px] lg:rounded-[20px] rounded-[10px] lg:translate-y-[-50%] flex items-center content-center justify-center shadow lg:left-auto sm:left-[125px] left-auto lg:bottom-auto sm:bottom-[20px] bottom-auto"
   :class="{
     'bg-gradient-to-bl from-[#000] via-[#400000] to-[#562683] text-white': rating === 100,
     'bg-gradient-to-bl from-[#188fff] via-[#e1a6e7] to-[#f9a205] text-white': rating === 99,
@@ -22,6 +22,6 @@ const { rating } = defineProps<{
   }"
   
   >
-    <p class="text-[50px] font-['Aleo'] font-black">{{ rating }}</p>
+    <p class="lg:text-[50px] text-[22px] font-['Aleo'] font-black">{{ rating }}</p>
   </div>
 </template>
