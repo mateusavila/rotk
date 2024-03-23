@@ -2,10 +2,15 @@
 import { useStorage } from '@vueuse/core'
 import type { GeneralData, NamesGenerals } from '~/types'
 
+useHead({
+  title: 'Romance of Three Kingdoms Database'
+})
+
 const { params: { general } } = useRoute()
 const { pending, data: generalInfo } = await useLazyAsyncData('data', () => $fetch<GeneralData>(`/api/general/${general}`))
 
 const names = useStorage<NamesGenerals[]>('names', [])
+const { rating } = useRatings()
 </script>
 
 <template>
@@ -15,17 +20,17 @@ const names = useStorage<NamesGenerals[]>('names', [])
         <Skeleton width="100%" height="180px" rounded="10px" />
       </div>
       <section class="w-full my-[20px] flex gap-[40px] flex-wrap">
-        <div class="lg:w-[calc(70%-20px)] w-full">
+        <div class="lg:w-[calc(70%-20px)] w-full h-[300px]">
           <Skeleton width="100%" height="300px" rounded="10px" />
         </div>
-        <div class="lg:w-[calc(30%-20px)] w-full">
+        <div class="lg:w-[calc(30%-20px)] w-full h-[300px]">
           <Skeleton width="100%" height="300px" rounded="10px" />
         </div>
       </section>
     </template>
     <template v-if="!pending">
       <div class="w-full" v-if="generalInfo">
-        <div class="w-full sm:h-[180px] h-auto bg-slate-200 rounded-[10px] p-[20px] flex items-center flex-wrap content-center justify-between">
+        <div class="w-full sm:h-[180px] h-auto bg-slate-200 rounded-[10px] p-[20px] flex items-center flex-wrap content-center justify-between relative">
           <div class="sm:w-[150px] w-full mb-[20px] sm:mb-0">
             <NuxtImg :src="`/${generalInfo.avatar}`" :alt="generalInfo.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow" />
           </div>
@@ -33,6 +38,7 @@ const names = useStorage<NamesGenerals[]>('names', [])
             <h1 class="sm:text-[40px] text-[30px] font-['Aleo'] font-black w-full m-0">{{ generalInfo.name }}</h1>
             <p class="w-full text-[16px] m-0">Birth: {{ generalInfo.birth }}</p>
             <SkillsBox :skills="generalInfo.skills" />
+            <RatingBadge :rating="rating(generalInfo.advanced_stats)" />
           </div>
         </div>
         <section class="w-full my-[20px] flex gap-[40px] flex-wrap">

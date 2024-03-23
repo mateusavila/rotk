@@ -12,8 +12,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/google-fonts', '@vueuse/nuxt', '@nuxt/image'],
   googleFonts: {
     families: {
-      Aleo: [200, 300, 400, 600, 800],
-      Barlow: [200, 300, 400, 600, 800],
+      Aleo: [400, 600, 800],
     }
   },
   ui: {

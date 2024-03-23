@@ -7,7 +7,7 @@ const {} = defineProps<{
 </script>
 
 <template>
-  <div class="skeleton" :class="[`w-[${width}]`, `h-[${height}]`, `rounded-[${width}]`]">
+  <div class="skeleton" :class="[`w-[${width}]`, `h-[${height}]`, `rounded-[${rounded}]`]">
 
   </div>
 </template>
