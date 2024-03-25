@@ -1,4 +1,4 @@
-import type { GeneralData } from "~/types"
+import type { GeneralData } from "~/utils"
 
 export default function useRatings() {
 

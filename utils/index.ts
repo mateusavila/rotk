@@ -1,3 +1,20 @@
+import { z } from 'zod'
+
+export interface LoggedUser {
+  id: string
+  name: string
+  email: string
+  avatar: string
+  level: number
+}
+
+export const login = z.object({
+  email: z.string().email('Invalid email'),
+  password: z.string().min(8, 'Must be at least 8 characters')
+}).required()
+
+export type Login = z.output<typeof login>
+
 export interface FamousGenerals {
   name: string
   slug: string

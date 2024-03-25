@@ -12,4 +12,4 @@ const { list } = defineProps<{ list: NamesGenerals[] }>()
       <Search :list="list" :fullsize="false" base-url="" />
     </div>
   </div>
-</template>
+</template>~/utils

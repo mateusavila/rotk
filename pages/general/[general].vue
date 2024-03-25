@@ -78,3 +78,4 @@ const { rating } = useRatings()
     </template>
   </NuxtLayout>
 </template>
+~/utils

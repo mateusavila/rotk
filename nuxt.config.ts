@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/ui', '@nuxtjs/google-fonts', '@vueuse/nuxt', '@nuxt/image'],
+  modules: ['@nuxt/ui', '@nuxtjs/google-fonts', '@vueuse/nuxt', '@nuxt/image', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
   googleFonts: {
     families: {
       Aleo: [400, 600, 800],
@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     icons: ['game-icons']
   },
   runtimeConfig: {
+    public: {
+      secretjwt: process.env.NUXT_SECRET_WEBTOKEN,
+    },
+    secretjwt: process.env.NUXT_SECRET_WEBTOKEN,
     turso: {
       url: process.env.NUXT_TURSO_DB_URL,
       authToken: process.env.NUXT_TURSO_DB_AUTH_TOKEN

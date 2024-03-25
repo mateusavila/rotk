@@ -319,3 +319,4 @@ const names = useStorage<NamesGenerals[]>('names', await namesList())
   </NuxtLayout>
 </template>
 
+~/utils

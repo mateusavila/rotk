@@ -23,4 +23,4 @@ const onChange = async () => {
       icon="i-heroicons-magnifying-glass-20-solid"
       size="xl" />
   </div>
-</template>
+</template>~/utils

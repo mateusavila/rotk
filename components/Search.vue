@@ -30,4 +30,4 @@ const onChange = async () => {
       </template>
     </USelectMenu>
   </div>
-</template>
+</template>~/utils

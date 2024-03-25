@@ -27,5 +27,6 @@
     <footer class="flex py-[20px] px-[40px] bg-gray-900 text-white text-center">
       <p class="w-full text-[12px]">This website is not affiliated with Koei or any other project, such as Kongming.net. The images and graphics used on this website are the property of Kongming.net.  All information and opinions expressed on this website are the responsibility of the authors and do not necessarily reflect the views of any other individual or organization. We reserve the right to modify or remove any content at any time without notice. By accessing this website, you agree to be bound by the terms of use.</p>
     </footer>
+    <UNotifications :ui="{ position: 'top-0 bottom-auto' }" />
   </div>
 </template>

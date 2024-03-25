@@ -1,4 +1,13 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core"
+
+export const user = sqliteTable("user", {
+  id: text("id").primaryKey(),
+  name: text("name"),
+  email: text("email"),
+  password: text("password"),
+  avatar: text("avatar"),
+  level: integer('level', { mode: "number" })
+})
 
 export const generals = sqliteTable("generals", {
   id: text("id").primaryKey(),
@@ -18,4 +27,4 @@ export const generals = sqliteTable("generals", {
   army_command: integer("army_command", { mode: "number" }),
   stats: text("stats", { mode: "json" }), // convert to json
   advanced_stats: text("advanced_stats", { mode: "json" }),
-});
+})
