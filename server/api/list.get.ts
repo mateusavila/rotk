@@ -1,8 +1,13 @@
 import { generals } from "../schemas"
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
   const client = useTurso()
-  const data = await client.select().from(generals).all()
+
+  const query = getQuery(event)
+  const { page, limit } = query
+  const pageSize = limit ? + limit : 10
+  const paged = page ? +page : 1
+  const data = await client.select().from(generals).orderBy(generals.slug).limit(pageSize).offset((paged - 1) * pageSize)
 
   return {
     data,

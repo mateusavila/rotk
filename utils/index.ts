@@ -47,53 +47,69 @@ export interface GeneralData {
   army_command: number
   stats: {
     rotk1: {
-      intelligence: number
-      power: number
-      charisma: number
-    } | false
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+    }
     rotk2: {
-      intelligence: number
-      power: number
-      charisma: number
-    } | false
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+    }
     rotk3: {
-      intelligence: number
-      power: number
+      active: boolean
+      intelligence: number | null
+      power: number | null
       politics: number
-      charisma: number
-    } | false
+      charisma: number | null
+    }
     rotk4: {
-      lead: number
-      intelligence: number
-      power: number
-      charisma: number
-      politics: number
-    } | false
+      active: boolean
+      lead: number | null
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      politics: number | null
+    }
     rotk7: {
-      intelligence: number
-      power: number
-      charisma: number
-      politics: number
-    } | false
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      politics: number | null
+    }
     rotk8: {
-      intelligence: number
-      power: number
-      charisma: number
-      politics: number
-    } | false
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      politics: number | null
+    }
     rotk9: {
-      intelligence: number
-      power: number
-      lead: number
-      politics: number
-    } | false
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      lead: number | null
+      politics: number | null
+    }
     rotk10: {
-      intelligence: number
-      power: number
-      charisma: number
-      lead: number
-      politics: number
-    } | false
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      lead: number | null
+      politics: number | null
+    }
+    rotk11: {
+      active: boolean
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      lead: number | null
+      politics: number | null
+    }
   },
   advanced_stats: {
     averages_per_game: {
@@ -105,6 +121,7 @@ export interface GeneralData {
       rotk8: number
       rotk9: number
       rotk10: number
+      rotk11: number
     }
     totals_per_game: {
       rotk1: number
@@ -115,6 +132,7 @@ export interface GeneralData {
       rotk8: number
       rotk9: number
       rotk10: number
+      rotk11: number
     }
     stats_averages: {
       intelligence: number

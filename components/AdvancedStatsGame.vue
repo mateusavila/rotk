@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GeneralData } from '~/types'
+import type { GeneralData } from '~/utils'
 import { useWindowSize } from '@vueuse/core'
 
 const { width } = useWindowSize()
@@ -38,7 +38,7 @@ const tabs = [
       <template #item="{ item }">
         <UCard>
           <template v-if="item.key === 'averages_per_game'">
-            <div class="w-full grid lg:grid-cols-8 sm:grid-cols-4 xxsm:grid-cols-2 gap-[20px]">
+            <div class="w-full grid lg:grid-cols-9 sm:grid-cols-4 xxsm:grid-cols-2 gap-[20px]">
               <div class="w-full">
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk1">absent</p>
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.averages_per_game.rotk1">{{ stats.averages_per_game.rotk1 }}</p>
@@ -79,10 +79,15 @@ const tabs = [
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk10">{{ stats.averages_per_game.rotk10 }}</p>
                 <p class="text-[12px] text-center">ROTK 10</p>
               </div>
+              <div class="w-full">
+                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk11">absent</p>
+                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk11">{{ stats.averages_per_game.rotk11 }}</p>
+                <p class="text-[12px] text-center">ROTK 11</p>
+              </div>
             </div>
           </template>
           <template v-if="item.key === 'totals_per_game'">
-            <div class="w-full grid lg:grid-cols-8 sm:grid-cols-4 xxsm:grid-cols-2 gap-[20px]">
+            <div class="w-full grid lg:grid-cols-9 sm:grid-cols-4 xxsm:grid-cols-2 gap-[20px]">
               <div class="w-full">
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk1">absent</p>
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk1">{{ stats.totals_per_game.rotk1 }}</p>
@@ -122,6 +127,11 @@ const tabs = [
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk10">absent</p>
                 <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk10">{{ stats.totals_per_game.rotk10 }}</p>
                 <p class="text-[12px] text-center">ROTK 10</p>
+              </div>
+              <div class="w-full">
+                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk11">absent</p>
+                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk11">{{ stats.totals_per_game.rotk11 }}</p>
+                <p class="text-[12px] text-center">ROTK 11</p>
               </div>
             </div>
           </template>

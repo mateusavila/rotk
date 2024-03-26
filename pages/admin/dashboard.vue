@@ -10,7 +10,7 @@ definePageMeta({
 </script>
 
 <template>
-  <NuxtLayout name="dashboard">
+  <NuxtLayout name="dashboardnew">
     <h1 class="font-['Aleo'] text-[32px] font-semibold">Dashboard</h1>
     
   </NuxtLayout>

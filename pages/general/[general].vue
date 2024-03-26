@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useStorage } from '@vueuse/core'
-import type { GeneralData, NamesGenerals } from '~/types'
+import type { GeneralData, NamesGenerals } from '~/utils'
 
 useHead({
   title: 'Romance of Three Kingdoms Database'
