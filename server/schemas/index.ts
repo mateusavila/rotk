@@ -14,7 +14,7 @@ export const generals = sqliteTable("generals", {
   name: text("name"),
   slug: text("slug"),
   avatar: text("avatar"),
-  skills: text("skills", { mode: "json" }), // convert to json
+  skills: text("skills", { mode: "json" }),
   bio: text("bio"),
   birth: integer("birth", { mode: "number" }),
   luck: integer("luck", { mode: "number" }),
@@ -25,6 +25,7 @@ export const generals = sqliteTable("generals", {
   is_ruler: integer("is_ruler", { mode: "boolean" }),
   navy_command: integer("navy_command", { mode: "number" }),
   army_command: integer("army_command", { mode: "number" }),
-  stats: text("stats", { mode: "json" }), // convert to json
+  stats: text("stats", { mode: "json" }),
   advanced_stats: text("advanced_stats", { mode: "json" }),
+  deletedAt: integer('deletedAt', { mode: 'boolean' })
 })

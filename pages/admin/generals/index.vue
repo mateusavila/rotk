@@ -2,10 +2,11 @@
 definePageMeta({
   middleware: ["auth"]
 })
+const toast = useToast()
 const q = ref('')
 const page = ref(1)
 const params = ref({ page, q })
-const { data, pending } = await useFetch('/api/list', {
+const { data, pending, refresh } = await useFetch('/api/list', {
   params,
   watch: [page, params],
   transform: (_data: {data: GeneralData[]}) => _data.data
@@ -28,6 +29,60 @@ const columns: any[] = [
     class: 'w-[65px]'
   }
 ]
+
+const isOpen = ref(false)
+const id = ref('')
+const loading = ref(false)
+const hasBeenDeleted = ref(false)
+const result = ref({
+  title: '',
+  text: ''
+})
+
+const openRemoveItem = (ID: string) => {
+  isOpen.value = true
+  hasBeenDeleted.value = false
+  id.value = ID
+  result.value = {
+    title: 'Are you sure?',
+    text: `There's no other way to bring back this general without help of the administrator.`
+  }
+}
+
+const closeAfterSave = () => {
+  isOpen.value = false
+  setTimeout(() => hasBeenDeleted.value = false, 1000)
+}
+const confirmDelete = async () => {
+  const token = window.localStorage.getItem('token')
+  loading.value = true
+  hasBeenDeleted.value = true
+  try {
+    const response = await $fetch(`/api/generals/${id.value}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    loading.value = false
+    result.value = {
+      title: 'Success',
+      text: response.message
+    }
+    await refresh()
+  } catch (error) {
+    loading.value = false
+    isOpen.value = false
+    toast.add({
+      id: 'error',
+      color: 'red',
+      title: 'Error!',
+      description: `Aparently, there's error in this request.`,
+      icon: 'i-game-icons-info'
+    })
+  } 
+}
+
 const items = (row: GeneralData) => [
   [{
     label: 'Edit General',
@@ -39,9 +94,11 @@ const items = (row: GeneralData) => [
   [{
     label: 'Delete general',
     icon: 'i-heroicons-trash-20-solid',
-    click: () => console.log('Remove', row.id)
+    click: () => openRemoveItem(row.id)
   }]
 ]
+
+
 
 </script>
 
@@ -86,5 +143,19 @@ const items = (row: GeneralData) => [
           :total="data.length" />
       </div>
     </div>
+    <UModal v-model="isOpen">
+      <div class="w-full relative p-[20px]">
+        <Loading :is-loading="loading" />
+        <h2 class="font-['Aleo'] text-[24px] font-semibold mb-[20px] text-center">{{result.title}}</h2>
+        <p class="text-[16px] my-[20px] text-center">{{ result.text }}</p>
+        <div class="w-full flex justify-center gap-[20px]" v-if="!hasBeenDeleted">
+          <UButton color="gray" @click="isOpen = false">Cancel</UButton>
+          <UButton color="red" @click="confirmDelete()">Confirm</UButton>
+        </div>
+        <div class="w-full flex justify-center gap-[20px]" v-if="hasBeenDeleted">
+          <UButton @click="closeAfterSave">Close</UButton>
+        </div>
+      </div>
+    </UModal>
   </NuxtLayout>
 </template>
