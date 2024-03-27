@@ -1,5 +1,88 @@
 import { z } from 'zod'
 
+export const generalInfoSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  skills: z.array(z.string()),
+  bio: z.string().optional(),
+  birth: z.coerce.number().optional(),
+  luck: z.coerce.number(),
+  health: z.coerce.number().min(1).max(100),
+  soldiers: z.coerce.number().min(100).max(100000),
+  loyalty: z.coerce.number().min(1).max(100),
+  navigation: z.boolean(),
+  is_ruler: z.boolean(),
+  navy_command: z.coerce.number().min(1).max(100),
+  army_command: z.coerce.number().min(1).max(100),
+  stats: z.object({
+    rotk1: z.boolean().or(z.object({
+      active: z.boolean(),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)])
+    })),
+    rotk2: z.boolean().or(z.object({
+      active: z.boolean(),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)])
+    })),
+    rotk3: z.boolean().or(z.object({
+      active: z.boolean(),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+    rotk4: z.boolean().or(z.object({
+      active: z.boolean(),
+      lead: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+    rotk7: z.boolean().or(z.object({
+      active: z.boolean(),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+    rotk8: z.boolean().or(z.object({
+      active: z.boolean(),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+    rotk9: z.boolean().or(z.object({
+      active: z.boolean(),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      lead: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+    rotk10: z.boolean().or(z.object({
+      active: z.boolean(),
+      lead: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+    rotk11: z.boolean().or(z.object({
+      active: z.boolean(),
+      lead: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      intelligence: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      power: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      charisma: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+      politics: z.union([z.coerce.number().min(1).max(100), z.literal(null)]),
+    })),
+  })
+}).required()
+
+export type GeneralInfoSchema = z.output<typeof generalInfoSchema>
+
 export interface LoggedUser {
   id: string
   name: string
@@ -62,7 +145,7 @@ export interface GeneralData {
       active: boolean
       intelligence: number | null
       power: number | null
-      politics: number
+      politics: number | null
       charisma: number | null
     }
     rotk4: {
@@ -113,47 +196,47 @@ export interface GeneralData {
   },
   advanced_stats: {
     averages_per_game: {
-      rotk1: number
-      rotk2: number
-      rotk3: number
-      rotk4: number
-      rotk7: number
-      rotk8: number
-      rotk9: number
-      rotk10: number
-      rotk11: number
+      rotk1: number | null
+      rotk2: number | null
+      rotk3: number | null
+      rotk4: number | null
+      rotk7: number | null
+      rotk8: number | null
+      rotk9: number | null
+      rotk10: number | null
+      rotk11: number | null
     }
     totals_per_game: {
-      rotk1: number
-      rotk2: number
-      rotk3: number
-      rotk4: number
-      rotk7: number
-      rotk8: number
-      rotk9: number
-      rotk10: number
-      rotk11: number
+      rotk1: number | null
+      rotk2: number | null
+      rotk3: number | null
+      rotk4: number | null
+      rotk7: number | null
+      rotk8: number | null
+      rotk9: number | null
+      rotk10: number | null
+      rotk11: number | null
     }
     stats_averages: {
-      intelligence: number
-      power: number
-      charisma: number
-      politics: number
-      lead: number
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      politics: number | null
+      lead: number | null
     }
     stats_max: {
-      intelligence: number
-      power: number
-      charisma: number
-      politics: number
-      lead: number
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      politics: number | null
+      lead: number | null
     }
     stats_min: {
-      intelligence: number
-      power: number
-      charisma: number
-      politics: number
-      lead: number
+      intelligence: number | null
+      power: number | null
+      charisma: number | null
+      politics: number | null
+      lead: number | null
     }
   }
 }

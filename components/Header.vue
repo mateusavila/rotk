@@ -14,7 +14,7 @@ const items = [
   [
     {
       label: 'Settings',
-      to: '/settings',
+      to: '/admin/settings',
       id: 'dropdown-configuration',
       icon: 'i-game-icons-cog',
       click: async() => await navigateTo('/admin/settings')
@@ -23,7 +23,7 @@ const items = [
   [
     {
       label: 'Sign out',
-      to: '/logoff',
+      to: '/admin/logoff',
       id: 'dropdown-logorr',
       icon: 'i-heroicons-arrow-left-on-rectangle',
       click: async() => await navigateTo('/admin/logoff')

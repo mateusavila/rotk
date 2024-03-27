@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+definePageMeta({
+  middleware: ["auth"]
+})
 const q = ref('')
 const page = ref(1)
 const params = ref({ page, q })
@@ -60,8 +63,13 @@ const items = (row: GeneralData) => [
         :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No General has been found' }"
         :columns="columns"
         :sort="{ column: 'title', direction: 'asc' }">
-        <template #image-data="{ row: { avatar, name } }">
-          <UAvatar :src="`../../${avatar}`" :alt="name" />
+        <template #image-data="{ row: { avatar, name, slug } }">
+          <nuxt-link :to="`/admin/generals/${slug}`">
+            <UAvatar :src="`../../${avatar}`" :alt="name" />
+          </nuxt-link>
+        </template>
+        <template #name-data="{ row: { name, slug } }">
+          <nuxt-link :to="`/admin/generals/${slug}`" class="hover:underline">{{ name }}</nuxt-link>
         </template>
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">

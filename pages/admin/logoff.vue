@@ -7,7 +7,7 @@ definePageMeta({
 onMounted(async () => { 
   const user = useUserStore()
   user.$reset()
-  window.localStorage.removeItem('token'); 
+  window.localStorage.clear()
   await navigateTo('/admin') 
 })
 
