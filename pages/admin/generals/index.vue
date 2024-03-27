@@ -1,15 +1,22 @@
 <script lang="ts" setup>
+import { refDebounced } from '@vueuse/core'
 definePageMeta({
   middleware: ["auth"]
 })
 const toast = useToast()
-const q = ref('')
+const search = ref('')
+const q = refDebounced(search, 1000)
 const page = ref(1)
 const params = ref({ page, q })
 const { data, pending, refresh } = await useFetch('/api/list', {
   params,
   watch: [page, params],
-  transform: (_data: {data: GeneralData[]}) => _data.data
+  transform: (_data: {data: GeneralData[], total: number}) => {
+    return {
+      data: _data.data,
+      total: _data.total
+    }
+  }
 })
 
 const columns: any[] = [
@@ -108,15 +115,14 @@ const items = (row: GeneralData) => [
     <div class="main-tables w-[calc(100%-40px)]">
       <div
         class="flex py-3.5 border-b border-gray-200 dark:border-gray-700 justify-between">
-        <UInput v-model="q"
+        <UInput v-model="search"
           icon="i-heroicons-magnifying-glass"
           placeholder="Search General" />
         <!-- <UButton to="/generals/create"
           icon="i-heroicons-plus-circle">Add general</UButton> -->
       </div>
-      
       <UTable :loading="pending"
-        :rows="data"
+        :rows="data?.data"
         :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No General has been found' }"
         :columns="columns"
         :sort="{ column: 'title', direction: 'asc' }">
@@ -136,11 +142,11 @@ const items = (row: GeneralData) => [
           </UDropdown>
         </template>
       </UTable>
-      <div class="w-full mt-[20px] mb-[10px] flex justify-end" v-if="data && data.length > 0">
+      <div class="w-full mt-[20px] mb-[10px] flex justify-end" v-if="data && data?.data.length > 0">
         <UPagination v-model="page"
-          :page-count="2"
-          :max="5"
-          :total="data.length" />
+          :page-count="10"
+          :max="10"
+          :total="data?.total" />
       </div>
     </div>
     <UModal v-model="isOpen">
