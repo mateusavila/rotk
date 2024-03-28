@@ -1,7 +1,6 @@
-import { generals } from "../../schemas"
+import { pages, meta_pages } from "../../../schemas"
 import { eq } from 'drizzle-orm'
 import { jwtVerify } from 'jose'
-import { generalInfoSchema } from "~/utils"
 
 export default defineEventHandler(async (event) => {
   const client = useTurso()
@@ -9,22 +8,10 @@ export default defineEventHandler(async (event) => {
   if (!id) {
     return {
       status: false,
-      message: 'No general has been found'
+      message: 'No page has been found'
     }
   }
-
-
   const token = getHeader(event, 'Authorization')?.split('Bearer ')[1] ?? ''
-
-  const body = await readBody(event)
-
-  // validate the field has correct values
-  if (!generalInfoSchema.safeParse(body)) {
-    return {
-      status: false,
-      message: `The Page fields aren't adherent to the proposed schema`
-    }
-  }
 
   // validate if token is Valid
   const { public: { secretjwt } } = useRuntimeConfig()
@@ -44,13 +31,12 @@ export default defineEventHandler(async (event) => {
 
   // limpa todo o cache para poder atualizar os dados
   await useStorage('cache').clear()
-
-
   try {
-    await client.update(generals).set(body).where(eq(generals.id, id))
+    await client.delete(meta_pages).where(eq(meta_pages.pages_id, id))
+    await client.delete(pages).where(eq(pages.id, id))
     return {
       status: true,
-      message: 'Success! General has been updated!'
+      message: 'Success! Page has been fully deleted!'
     }
   } catch (error) {
     return {

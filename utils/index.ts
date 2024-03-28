@@ -1,5 +1,40 @@
 import { z } from 'zod'
 
+
+export const pageSchema = z.object({
+  title: z.string().min(1, 'Title is necessary'),
+  content: z.string().min(1, 'Content is necessary'),
+  meta_pages: z.array(z.object({
+    key: z.string().min(1, 'Key is necessary'),
+    value: z.any(),
+    type: z.string().min(1, 'Type is necessary')
+  })).superRefine((val, ctx) => {
+    const seen = new Set()
+    for (const [i, item] of val.entries()) {
+      if (seen.has(item.key)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Key must be unique`,
+          path: [i, 'key'],
+        })
+      } else {
+        seen.add(item.key)
+      }
+    }
+  })
+})
+
+export type PageSchema = z.output<typeof pageSchema>
+
+export interface PagesInterface {
+  id: string
+  title: string
+  slug: string
+  content: string
+  date: string | Date
+  author_id: number
+}
+
 export const generalInfoSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   skills: z.array(z.string()),
@@ -239,4 +274,15 @@ export interface GeneralData {
       lead: number | null
     }
   }
+}
+
+export interface CustomFields {
+  key: string
+  value: string | any
+  type: string
+}
+
+export interface OptionsSelect {
+  label: string
+  value: string
 }

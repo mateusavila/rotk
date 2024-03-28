@@ -51,7 +51,7 @@ export default eventHandler(async (event) => {
     .setSubject('mavisidoro@gmail.com')
     .setAudience('romance-of-three-kingdoms')
     .setProtectedHeader({ alg: 'HS256' })
-    .setExpirationTime('1h')
+    .setExpirationTime('24h')
     .sign(secretKeyBuffer)
   return {
     token

@@ -1,4 +1,22 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core"
+import { sql } from "drizzle-orm"
+import { sqliteTable, text, integer, AnySQLiteColumn } from "drizzle-orm/sqlite-core"
+
+export const pages = sqliteTable("pages", {
+  id: text("id").primaryKey(),
+  title: text("title"),
+  slug: text("slug"),
+  content: text("content"),
+  author_id: integer("author_id").references((): AnySQLiteColumn => user.id),
+  date: text("date").default(sql`(CURRENT_DATE)`),
+})
+
+export const meta_pages = sqliteTable("meta_pages", {
+  id: text("id").primaryKey(),
+  key: text("key"),
+  value: text("value"),
+  type: text("type"),
+  pages_id: text("pages_id").references((): AnySQLiteColumn => pages.id),
+})
 
 export const user = sqliteTable("user", {
   id: text("id").primaryKey(),
@@ -29,3 +47,4 @@ export const generals = sqliteTable("generals", {
   advanced_stats: text("advanced_stats", { mode: "json" }),
   deletedAt: integer('deletedAt', { mode: 'boolean' })
 })
+
