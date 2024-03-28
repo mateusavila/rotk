@@ -10,7 +10,7 @@ const openMenuAction = () => menuOpen.value = !menuOpen.value
       <div class="w-full flex items-center m-auto max-w-[1080px] justify-between relative">
         <div class="w-[300px] flex gap-[10px] items-center">
           <nuxt-link to="/" class="w-[300px] flex gap-[10px] items-center">
-            <NuxtImg src="./logo3.png" alt="Romance of Three Kingdoms" width="467" height="154" loading="lazy" class="sm:max-w-[150px] max-w-[120px] h-auto m-0" />
+            <img src="../public/logo3.png" alt="Romance of Three Kingdoms" width="467" height="154" loading="lazy" class="sm:max-w-[150px] max-w-[120px] h-auto m-0" />
             <h1 class="font-['Aleo'] text-[20px] text-white font-semibold mb-0">Database</h1>
           </nuxt-link>
         </div>
