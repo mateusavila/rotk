@@ -1,17 +1,9 @@
 <script lang="ts" setup>
 import { refDebounced } from '@vueuse/core'
-import type { CustomFields, PagesInterface } from '~/utils'
 definePageMeta({
   middleware: ["auth"]
 })
 
-interface PageResponse {
-  data: {
-    pages: PagesInterface,
-    meta_pages: CustomFields[]
-  }[],
-  total: number
-}
 const toast = useToast()
 const search = ref('')
 const q = refDebounced(search, 1000)
@@ -19,7 +11,13 @@ const page = ref(1)
 const params = ref({ page, q })
 const { data, pending, refresh } = await useFetch<PageResponse>('/api/pages/list', {
   params,
-  watch: [page, params]
+  watch: [page, params],
+  transform: (_data: PageResponse) => {
+    return {
+      data: _data.data,
+      total: _data.total
+    }
+  }
 })
 
 const columns: any[] = [
@@ -122,11 +120,11 @@ const items = (row: PagesInterface) => [
         :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No page has been found' }"
         :columns="columns"
         :sort="{ column: 'title', direction: 'asc' }">
-        <template #title-data="{ row: { pages: {title, id } } }">
+        <template #title-data="{ row: {title, id } }">
           <nuxt-link :to="`/admin/pages/edit/${id}`" class="hover:underline">{{ title }}</nuxt-link>
         </template>
-        <template #actions-data="{ row: { pages } }">
-          <UDropdown :items="items(pages)">
+        <template #actions-data="{ row }">
+          <UDropdown :items="items(row)">
             <UButton color="gray"
               variant="ghost"
               icon="i-heroicons-ellipsis-horizontal-20-solid" />

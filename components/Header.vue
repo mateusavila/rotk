@@ -11,15 +11,15 @@ const items = [
       disabled: true
     }
   ],
-  [
-    {
-      label: 'Settings',
-      to: '/admin/settings',
-      id: 'dropdown-configuration',
-      icon: 'i-game-icons-cog',
-      click: async() => await navigateTo('/admin/settings')
-    }
-  ],
+  // [
+  //   {
+  //     label: 'Settings',
+  //     to: '/admin/settings',
+  //     id: 'dropdown-configuration',
+  //     icon: 'i-game-icons-cog',
+  //     click: async() => await navigateTo('/admin/settings')
+  //   }
+  // ],
   [
     {
       label: 'Sign out',

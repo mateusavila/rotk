@@ -94,7 +94,7 @@ const onSubmit = async(event: FormSubmitEvent<PageSchema>) => {
         <h2 class="font-['Aleo'] text-[24px] font-semibold mb-[20px] text-center">{{result.title}}</h2>
         <p class="text-[16px] my-[20px] text-center">{{ result.text }}</p>
         <div class="w-full flex justify-center">
-          <UButton to="/admin/generals">Close</UButton>
+          <UButton to="/admin/pages">Close</UButton>
         </div>
       </div>
     </UModal>

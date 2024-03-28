@@ -1,5 +1,21 @@
 import { z } from 'zod'
 
+export interface PageResponse {
+  data: PagesInterface[],
+  total: number
+}
+
+export interface PageResponseItem {
+  data: {
+    id: PagesInterface['id']
+    title: PagesInterface['title']
+    slug: PagesInterface['slug']
+    content: PagesInterface['content']
+    author_id: PagesInterface['author_id']
+    date: PagesInterface['date']
+    meta_pages: CustomFields[]
+  }
+}
 
 export const pageSchema = z.object({
   title: z.string().min(1, 'Title is necessary'),

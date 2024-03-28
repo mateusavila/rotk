@@ -15,11 +15,11 @@ const links = ref([
     label: 'Pages',
     icon: 'i-game-icons-black-book'
   },
-  {
-    url: '/admin/settings',
-    label: 'Settings',
-    icon: 'i-game-icons-cog'
-  }
+  // {
+  //   url: '/admin/settings',
+  //   label: 'Settings',
+  //   icon: 'i-game-icons-cog'
+  // }
 ])
 
 const route = useRoute()
