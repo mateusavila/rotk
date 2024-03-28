@@ -43,7 +43,7 @@ const onSubmit = async(event: FormSubmitEvent<PageSchema>) => {
         'Authorization': `Bearer ${token}`
       }
     })
-    console.log(response)
+    // console.log(response)
     loading.value = false
     result.value = {
       title: 'Success',
@@ -67,7 +67,7 @@ const onSubmit = async(event: FormSubmitEvent<PageSchema>) => {
 <template>
   <NuxtLayout name="dashboardnew">
     <h1 class="font-['Aleo'] text-[32px] font-semibold">Add new Page</h1>
-    <div class="w-[calc(100%-40px)] my-[50px] relative">
+    <div class="w-[calc(100%-40px)] my-[20px] relative">
       <ClientOnly>
         <UForm :schema="pageSchema"
           :state="state"

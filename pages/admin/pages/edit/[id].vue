@@ -5,7 +5,7 @@ definePageMeta({
 })
 const { params: { id } } = useRoute()
 
-const { data } = await useLazyFetch<PageResponseItem>(`/api/pages/item/${id}`)
+const { data, pending } = await useLazyFetch<PageResponseItem>(`/api/pages/item/${id}`)
 const toast = useToast()
 const { slugConverter } = useSlug()
 const isOpen = ref(false)
@@ -54,7 +54,7 @@ const onSubmit = async(event: FormSubmitEvent<PageSchema>) => {
         'Authorization': `Bearer ${token}`
       }
     })
-    console.log(response)
+    // console.log(response)
     loading.value = false
     result.value = {
       title: 'Success',
@@ -78,7 +78,7 @@ const onSubmit = async(event: FormSubmitEvent<PageSchema>) => {
 <template>
   <NuxtLayout name="dashboardnew">
     <h1 class="font-['Aleo'] text-[32px] font-semibold">Edit Page</h1>
-    <div class="w-[calc(100%-40px)] my-[50px] relative">
+    <div class="w-[calc(100%-40px)] my-[20px] relative" v-if="!pending">
       <ClientOnly>
         <UForm :schema="pageSchema"
           :state="state"

@@ -243,7 +243,7 @@ const skills = ['Foreign', 'Spy', 'Recruit', 'Build', 'Bribe', 'Rebel', 'Gossip'
 <template>
   <NuxtLayout name="dashboardnew">
     <h1 class="font-['Aleo'] text-[32px] font-semibold">Edit General Info</h1>
-    <div class="w-[calc(100%-40px)] my-[50px] relative" v-if="user">
+    <div class="w-[calc(100%-40px)] my-[20px] relative" v-if="user">
     <Loading :is-loading="pending" />
     <ClientOnly v-if="data">
       <h2 class="font-['Aleo'] text-[18px] font-semibold mb-[20px]">Basic Information</h2>
