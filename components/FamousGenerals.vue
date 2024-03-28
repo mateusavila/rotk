@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { FamousGenerals } from '~/types'
+import type { FamousGenerals } from '~/utils'
 interface ComponentInterface {
   list: FamousGenerals[],
   title: string
