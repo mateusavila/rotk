@@ -43,7 +43,7 @@ useSeoMeta({
       <div class="w-full" v-if="generalInfo">
         <div class="w-full sm:h-[180px] h-auto bg-slate-200 rounded-[10px] p-[20px] flex items-center flex-wrap content-center justify-between relative">
           <div class="sm:w-[150px] w-full mb-[20px] sm:mb-0">
-            <NuxtImg :src="`/${generalInfo.avatar}`" :alt="generalInfo.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow" />
+            <img :src="`/${generalInfo.avatar}`" :alt="generalInfo.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow" />
           </div>
           <div class="sm:w-[calc(100%-180px)] w-full">
             <h1 class="sm:text-[40px] text-[30px] font-['Aleo'] font-black w-full m-0">{{ generalInfo.name }}</h1>

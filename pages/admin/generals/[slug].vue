@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { FormSubmitEvent } from '#ui/types'
 import { vMaska } from 'maska'
-import type { GeneralInfoSchema } from '../../../../utils/index'
-import { generalInfoSchema } from '../../../../utils/index'
+import type { GeneralInfoSchema } from '../../../utils/index'
+import { generalInfoSchema } from '../../../utils/index'
 definePageMeta({
   middleware: ["auth"]
 })

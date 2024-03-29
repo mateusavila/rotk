@@ -8,7 +8,8 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.png" },
-        { rel: 'preload', as: 'image', href: '/peach-garden-min.avif' }
+        { rel: 'preload', as: 'image', href: '/peach-garden-min.avif' },
+        { rel: 'preload', as: 'image', href: '/logo-4.avif' }
       ]
     }
   },

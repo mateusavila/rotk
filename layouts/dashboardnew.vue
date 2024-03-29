@@ -2,9 +2,6 @@
 useHead({
   title: 'Admin | Romance of Three Kingdoms Database'
 })
-definePageMeta({
-  middleware: ["auth"]
-})
 </script>
 
 <template>
