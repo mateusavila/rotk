@@ -9,11 +9,6 @@ export enum Size {
 
 export type FieldType = 'textarea' | 'select' | 'checkbox' | 'radiogroup' | 'toggle' | 'range' | 'password' | 'number' | 'date' | 'email' | 'time' | 'text' | 'file' | 'upload' | 'money' | 'cardcheckbox' | 'divisor' | 'editor' | 'array'
 
-export type OptionsSelect = {
-  label: string
-  value: any
-}
-
 export type FieldsComponentsChild = {
   type: FieldType
   id: string

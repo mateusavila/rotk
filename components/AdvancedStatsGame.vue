@@ -229,4 +229,3 @@ const tabs = [
     </UTabs>
   </div>
 </template>
-~/utils

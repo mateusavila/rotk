@@ -3,9 +3,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en'
+      },
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.png" },
-        { rel: 'preload', as: 'image', href: '/peach-garden-min.jpg' }
+        { rel: 'preload', as: 'image', href: '/peach-garden-min.avif' }
       ]
     }
   },

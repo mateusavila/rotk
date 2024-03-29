@@ -309,5 +309,5 @@ export interface CustomFields {
 
 export interface OptionsSelect {
   label: string
-  value: string
+  value: string | number | any
 }

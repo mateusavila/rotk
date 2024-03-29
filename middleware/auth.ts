@@ -10,7 +10,6 @@ export default defineNuxtRouteMiddleware(async () => {
   }
 
   // Validar token
-
   const secretKeyBuffer = new TextEncoder().encode(secretjwt)
   try {
     // Verifique o token
@@ -18,12 +17,7 @@ export default defineNuxtRouteMiddleware(async () => {
       issuer: "Romance of Three Kingdoms Database",
       audience: "romance-of-three-kingdoms",
     })
-
-    // Log dos valores para o console
-    // console.log('Payload:', payload)
-
   } catch (error) {
-
     return navigateTo('/admin')
   }
 })

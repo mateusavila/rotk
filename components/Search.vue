@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import type { NamesGenerals } from '~/types'
+import type { NamesGenerals } from '~/utils'
 const search = ref<{key: string, label: string, avatar: string}>()
 const { list, fullsize, baseUrl = '' } = defineProps<{ list: NamesGenerals[], fullsize: boolean, baseUrl: string }>() 
 
-const onChange = async () => {
-  if (search.value && search.value.key.length > 1) {
-    await navigateTo(`/general/${search.value.key}`)
+
+watch(() => search.value, async (s) => {
+  if (s?.key.length) {
+    await navigateTo(`/general/${s.key}`)
   }
-}
+}, { immediate: true, deep: true })
 </script>
 
 <template>
@@ -21,8 +22,7 @@ const onChange = async () => {
       searchable-placeholder="Search a general..."
       class="w-full"
       v-model="search" 
-      placeholder="Search" 
-      @change="onChange"
+      placeholder="Search"
       icon="i-heroicons-magnifying-glass-20-solid"
       size="xl">
       <template #option="{ option: general }">
@@ -30,4 +30,4 @@ const onChange = async () => {
       </template>
     </USelectMenu>
   </div>
-</template>~/utils
+</template>

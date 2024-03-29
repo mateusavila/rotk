@@ -6,88 +6,99 @@ useHead({
   title: 'Romance of Three Kingdoms Database'
 })
 
+useSeoMeta({
+  title: 'Romance of Three Kingdoms Database',
+  ogTitle: 'Romance of Three Kingdoms Database',
+  description: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
+  ogDescription: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
+  keywords: 'Romance of Three Kingdoms, ROTK, Database, Generals, Zhuge Liang, Cao Cao, Zhao Yun, Liu Bei, Three Kingdoms',
+  robots: 'index, follow',
+  contentType: 'text/html; charset=utf-8',
+  author: 'Mateus Ávila Isidoro'
+})
+
 const rulers: FamousGenerals[] = [
   {
     name: 'Cao Cao',
     slug: '/general/cao-cao',
-    image: 'cao-cao.webp',
+    image: 'cao-cao.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Liu Bei',
     slug: '/general/liu-bei',
-    image: 'liu-bei.webp',
+    image: 'liu-bei.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Sun Quan',
     slug: '/general/sun-quan',
-    image: 'sun-quan.webp',
+    image: 'sun-quan.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Dong Zhuo',
     slug: '/general/dong-zhuo',
-    image: 'dong-zhuo.jpg',
+    image: 'dong-zhuo.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Yuan Shao',
     slug: '/general/yuan-shao',
-    image: 'yuan-shao.webp',
+    image: 'yuan-shao.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Yuan Shu',
     slug: '/general/yuan-shu',
-    image: 'yuan-shu.jpg',
+    image: 'yuan-shu.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Cao Pi',
     slug: '/general/cao-pi',
-    image: 'cao-pi.webp',
+    image: 'cao-pi.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Cao Rui',
     slug: '/general/cao-rui',
-    image: 'cao-rui.webp',
+    image: 'cao-rui.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Sun Jian',
     slug: '/general/sun-jian',
-    image: 'sun-jian.jpg',
+    image: 'sun-jian.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Sun Ce',
     slug: '/general/sun-ce',
-    image: 'sun-ce.webp',
+    image: 'sun-ce.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Ma Teng',
     slug: '/general/ma-teng',
-    image: 'ma-teng.webp',
+    image: 'ma-teng.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Gongsun Zan',
     slug: '/general/gongsun-zan',
-    image: 'gongsun-zan.webp',
+    image: 'gongsun-zan.avif',
     width: 256,
     height: 256
   },
@@ -97,84 +108,84 @@ const advisors: FamousGenerals[] = [
 {
     name: 'Zhuge Liang',
     slug: '/general/zhuge-liang',
-    image: 'zhuge-liang.jpg',
+    image: 'zhuge-liang.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Sima Yi',
     slug: '/general/sima-yi',
-    image: 'sima-yi.jpg',
+    image: 'sima-yi.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Xun You',
     slug: '/general/xun-you',
-    image: 'xun-you.jpg',
+    image: 'xun-you.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Zhou Yu',
     slug: '/general/zhou-yu',
-    image: 'zhou-yu.jpg',
+    image: 'zhou-yu.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Pang Tong',
     slug: '/general/pang-tong',
-    image: 'pang-tong.jpg',
+    image: 'pang-tong.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Guo Jia',
     slug: '/general/guo-jia',
-    image: 'guo-jia.webp',
+    image: 'guo-jia.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Xu You',
     slug: '/general/xu-you',
-    image: 'xu-you.webp',
+    image: 'xu-you.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Jia Xu',
     slug: '/general/jia-xu',
-    image: 'jia-xu.webp',
+    image: 'jia-xu.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Lu Meng',
     slug: '/general/lu-meng',
-    image: 'lu-meng.jpg',
+    image: 'lu-meng.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Lu Xun',
     slug: '/general/lu-xun',
-    image: 'lu-xun.webp',
+    image: 'lu-xun.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Lu Su',
     slug: '/general/lu-su',
-    image: 'lu-su.jpg',
+    image: 'lu-su.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Fa Zheng',
     slug: '/general/fa-zheng',
-    image: 'fa-zheng.webp',
+    image: 'fa-zheng.avif',
     width: 256,
     height: 256
   },
@@ -184,112 +195,112 @@ const warriors: FamousGenerals[] = [
 {
     name: 'Lu Bu',
     slug: '/general/lu-bu',
-    image: 'lu-bu.webp',
+    image: 'lu-bu.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Zhao Yun',
     slug: '/general/zhao-yun',
-    image: 'zhao-yun.webp',
+    image: 'zhao-yun.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Guan Yu',
     slug: '/general/guan-yu',
-    image: 'guan-yu.webp',
+    image: 'guan-yu.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Zhang Fei',
     slug: '/general/zhang-fei',
-    image: 'zhang-fei.webp',
+    image: 'zhang-fei.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Xiahou Dun',
     slug: '/general/xiahou-dun',
-    image: 'xiahou-dun.webp',
+    image: 'xiahou-dun.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Dian Wei',
     slug: '/general/dian-wei',
-    image: 'dian-wei.webp',
+    image: 'dian-wei.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Zhang Liao',
     slug: '/general/zhang-liao',
-    image: 'zhang-liao.webp',
+    image: 'zhang-liao.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Taishi Ci',
     slug: '/general/taishi-ci',
-    image: 'taishi-ci.webp',
+    image: 'taishi-ci.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Cao Ren',
     slug: '/general/cao-ren',
-    image: 'cao-ren.jpg',
+    image: 'cao-ren.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Xu Chu',
     slug: '/general/xu-chi',
-    image: 'xu-chu.webp',
+    image: 'xu-chu.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Wen Chou',
     slug: '/general/wen-chou',
-    image: 'wen-chou.webp',
+    image: 'wen-chou.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Huang Zhong',
     slug: '/general/huang-zhong',
-    image: 'huang-zhong.webp',
+    image: 'huang-zhong.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Gan Ning',
     slug: '/general/gan-ning',
-    image: 'gan-ning.webp',
+    image: 'gan-ning.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Zhou Tai',
     slug: '/general/zhou-tai',
-    image: 'zhou-tai.jpg',
+    image: 'zhou-tai.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Wei Yan',
     slug: '/general/wei-yan',
-    image: 'wei-yan.webp',
+    image: 'wei-yan.avif',
     width: 256,
     height: 256
   },
   {
     name: 'Xiahou Yuan',
     slug: '/general/xiahou-yuan',
-    image: 'xiahou-yuan.webp',
+    image: 'xiahou-yuan.avif',
     width: 256,
     height: 256
   }
@@ -318,5 +329,3 @@ const names = useStorage<NamesGenerals[]>('names', await namesList())
     <FamousGenerals title="Might Warriors" :list="warriors" />
   </NuxtLayout>
 </template>
-
-~/utils
