@@ -1,16 +1,23 @@
 <script lang="ts" setup>
-import { refDebounced } from '@vueuse/core'
+import { useStorage } from '@vueuse/core'
 definePageMeta({
   middleware: ["auth"]
 })
 const toast = useToast()
-const search = ref('')
-const q = refDebounced(search, 1000)
+const q = ref<{ key: string, value: string, avatar: string }>()
 const page = ref(1)
-const params = ref({ page, q })
+
+const search = ref('')
+watch(() => q.value, (s) => {
+  if (s && s.key.length) {
+    search.value = s.key
+  }
+}, { deep: true })
+
+const params = ref({ page, search })
 const { data, pending, refresh } = await useFetch('/api/list', {
   params,
-  watch: [page, params],
+  watch: [params],
   transform: (_data: {data: GeneralData[], total: number}) => {
     return {
       data: _data.data,
@@ -105,21 +112,26 @@ const items = (row: GeneralData) => [
   }]
 ]
 
-
-
+const namesList = async (): Promise<NamesGenerals[]> => {
+  const { data } = await $fetch('/api/names')
+  if (!data) {
+    return []
+  }
+  return data.map((item) => ({
+    label: item.label ?? '',
+    key: item.key ?? '',
+    avatar: item.avatar ?? ''
+  }))
+}
+const list = useStorage<NamesGenerals[]>('names', await namesList())
 </script>
 
 <template>
   <NuxtLayout name="dashboardnew">
     <h1 class="font-['Aleo'] text-[32px] font-semibold">Generals</h1>
     <div class="main-tables w-[calc(100%-40px)]">
-      <div
-        class="flex py-3.5 border-b border-gray-200 dark:border-gray-700 justify-between">
-        <UInput v-model="search"
-          icon="i-heroicons-magnifying-glass"
-          placeholder="Search General" />
-        <!-- <UButton to="/generals/create"
-          icon="i-heroicons-plus-circle">Add general</UButton> -->
+      <div class="flex py-3.5 border-b border-gray-200 dark:border-gray-700 justify-between">
+        <SearchAdmin v-model="q" :list="list" :fullsize="false" base-url="" />
       </div>
       <UTable :loading="pending"
         :rows="data?.data"

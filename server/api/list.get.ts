@@ -1,17 +1,17 @@
-import { eq, sql, and, SQL, like } from "drizzle-orm"
+import { eq, sql, and, SQL } from "drizzle-orm"
 import { generals } from "../schemas"
 
 export default defineEventHandler(async (event) => {
   const client = useTurso()
 
   const query = getQuery(event)
-  const { page, limit, q } = query
+  const { page, limit, search } = query
   const pageSize = limit ? + limit : 10
   const paged = page ? +page : 1
   let whereEq = eq(generals.deletedAt, false)
-  if (q && `${q}`.length) {
+  if (search && `${search}`.length) {
     whereEq = and(
-      like(generals.name, `${q}`),
+      eq(generals.slug, `${search}`),
       eq(generals.deletedAt, false)
     ) as SQL<unknown>
   }
