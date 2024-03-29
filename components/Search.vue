@@ -26,7 +26,7 @@ watch(() => search.value, async (s) => {
       icon="i-heroicons-magnifying-glass-20-solid"
       size="xl">
       <template #option="{ option: general }">
-        <UAvatar v-if="general.avatar" :src="`${baseUrl}${general.avatar}`" size="2xs" /> {{ general.label }}
+        {{ general.label }}
       </template>
     </USelectMenu>
   </div>
