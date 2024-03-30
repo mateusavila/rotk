@@ -324,6 +324,7 @@ const names = useStorage<NamesGenerals[]>('names', await namesList())
 <template>
   <NuxtLayout name="default">
     <Banner :list="names" />
+    <CompareBox :list="names" />
     <FamousGenerals title="Warlords" :list="rulers" />
     <FamousGenerals title="Brilliant Advisors" :list="advisors" />
     <FamousGenerals title="Might Warriors" :list="warriors" />

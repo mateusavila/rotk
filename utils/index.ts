@@ -158,6 +158,22 @@ export const login = z.object({
 
 export type Login = z.output<typeof login>
 
+export const compareGenerals = z.object({
+  general1: z.string().min(1, 'Pick a general'),
+  general2: z.string().min(1, 'Pick a general')
+}).required().superRefine((val, { addIssue }) => {
+  const { general1, general2 } = val
+  if (general1 === general2) {
+    addIssue({
+      message: 'Please pick another General',
+      code: z.ZodIssueCode.custom,
+      path: ['general2']
+    })
+  }
+})
+
+export type CompareGenerals = z.output<typeof compareGenerals>
+
 export interface FamousGenerals {
   name: string
   slug: string

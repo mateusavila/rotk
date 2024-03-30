@@ -49,13 +49,13 @@ useSeoMeta({
             <h1 class="sm:text-[40px] text-[30px] font-['Aleo'] font-black w-full m-0">{{ generalInfo.name }}</h1>
             <p class="w-full text-[16px] m-0">Birth: {{ generalInfo.birth }}</p>
             <SkillsBox :skills="generalInfo.skills" />
-            <RatingBadge :rating="rating(generalInfo.advanced_stats)" />
+            <RatingBadge position="absolute" size="big" :rating="rating(generalInfo.advanced_stats)" rounded="lg:rounded-[20px] rounded-[10px]" />
           </div>
         </div>
         <section class="w-full my-[20px] flex gap-[40px] flex-wrap">
           <div class="lg:w-[calc(70%-20px)] w-full">
             <div class="w-full mb-[40px]">
-              <h2 class="font-['Aleo'] text-[24px]  font-black">Biography</h2>
+              <h2 class="font-['Aleo'] text-[24px] font-black">Biography</h2>
               <p v-if="generalInfo.bio.length > 3">{{ generalInfo.bio }}</p>
               <p v-else>We are looking for help here.</p>
             </div>
