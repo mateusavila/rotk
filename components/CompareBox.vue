@@ -16,10 +16,10 @@ const onSubmit = async (event: FormSubmitEvent<CompareGenerals>) => {
 </script>
 
 <template>
-  <div class="w-full p-[20px] rounded-[6px] bg-slate-900 text-white my-[20px] flex items-center justify-between">
-    <h2 class="text-[18px] text-white flex items-center gap-[10px] font-['Aleo'] font-bold"> Compare the generals!</h2>
-    <UForm :schema="compareGenerals" :state="state" class="flex items-center gap-[10px] w-[calc(100%-220px)] justify-between" @submit="onSubmit">
-      <UFormGroup :ui="{ wrapper: 'w-[calc(50%-40px)]' }" name="general1">
+  <div class="w-full p-[20px] rounded-[6px] bg-slate-900 text-white my-[20px]">
+    <h2 class="text-[18px] text-white flex items-center gap-[10px] font-['Aleo'] font-bold mb-[20px]"> Compare the generals!</h2>
+    <UForm :schema="compareGenerals" :state="state" class="flex items-center gap-[10px] w-full xsm:justify-between justify-center flex-wrap" @submit="onSubmit">
+      <UFormGroup :ui="{ wrapper: 'xsm:w-[calc(50%-30px)] w-full' }" name="general1">
         <USelectMenu 
           :options="list"
           searchable
@@ -34,8 +34,8 @@ const onSubmit = async (event: FormSubmitEvent<CompareGenerals>) => {
           </template>
         </USelectMenu>
       </UFormGroup>
-      <UIcon  name="i-game-icons-crossed-swords" class="text-[24px]"></UIcon>
-      <UFormGroup :ui="{ wrapper: 'w-[calc(50%-40px)]' }" name="general2">
+      <UIcon name="i-game-icons-crossed-swords" class="text-[24px]"></UIcon>
+      <UFormGroup :ui="{ wrapper: 'xsm:w-[calc(50%-30px)] w-full' }" name="general2">
         <USelectMenu 
           :options="list"
           searchable
@@ -50,7 +50,9 @@ const onSubmit = async (event: FormSubmitEvent<CompareGenerals>) => {
           </template>
         </USelectMenu>
       </UFormGroup>
-      <UButton type="submit">Go!</UButton>
+      <div class="w-full flex justify-center">
+        <UButton icon="i-game-icons-crossed-swords" type="submit" color="red">Compare now!</UButton>
+      </div>
     </UForm>
   </div>
 </template>
