@@ -147,7 +147,7 @@ const onSubmit = async(event: FormSubmitEvent<GeneralInfoSchema>) => {
   const body = {
     name, 
     slug: slugConverter(name),
-    avatar: `${slugConverter(name)}.jpg`,
+    avatar: `${slugConverter(name)}.avif`,
     skills: toRaw(skills), 
     bio, 
     birth, 

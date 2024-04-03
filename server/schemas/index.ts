@@ -48,3 +48,11 @@ export const generals = sqliteTable("generals", {
   deletedAt: integer('deletedAt', { mode: 'boolean' })
 })
 
+export const generalStats = sqliteTable("generalStats", {
+  id: text("id").primaryKey(),
+  slug: text("slug"),
+  game: text("game"),
+  stat: text("stat"),
+  value: integer("value", { mode: "number" })
+})
+

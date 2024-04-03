@@ -56,7 +56,7 @@ useSeoMeta({
           <div class="lg:w-[calc(70%-20px)] w-full">
             <div class="w-full mb-[40px]">
               <h2 class="font-['Aleo'] text-[24px] font-black">Biography</h2>
-              <p v-if="generalInfo.bio.length > 3">{{ generalInfo.bio }}</p>
+              <div v-if="generalInfo.bio.length > 3" v-html="generalInfo.bio"></div>
               <p v-else>We are looking for help here.</p>
             </div>
             <div class="w-full mb-[40px]">

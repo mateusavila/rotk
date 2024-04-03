@@ -16,10 +16,10 @@ const onSubmit = async (event: FormSubmitEvent<CompareGenerals>) => {
 </script>
 
 <template>
-  <div class="w-full p-[20px] rounded-[6px] bg-slate-900 text-white my-[20px]">
-    <h2 class="text-[18px] text-white flex items-center gap-[10px] font-['Aleo'] font-bold mb-[20px]"> Compare the generals!</h2>
-    <UForm :schema="compareGenerals" :state="state" class="flex items-center gap-[10px] w-full xsm:justify-between justify-center flex-wrap" @submit="onSubmit">
-      <UFormGroup :ui="{ wrapper: 'xsm:w-[calc(50%-30px)] w-full' }" name="general1">
+  <div class="w-full p-[20px] bg-slate-900 text-white">
+    <h2 class="text-[18px] text-white flex items-center gap-[10px] font-['Aleo'] font-bold mb-[11px]">Clash of Generals!</h2>
+    <UForm :schema="compareGenerals" :state="state" class="flex items-center gap-[10px] w-full lg:justify-center xsm:justify-between justify-center flex-wrap" @submit="onSubmit">
+      <UFormGroup :ui="{ wrapper: 'xsm:w-[calc(50%-30px)] lg:w-full w-full' }" name="general1">
         <USelectMenu 
           :options="list"
           searchable
@@ -35,7 +35,7 @@ const onSubmit = async (event: FormSubmitEvent<CompareGenerals>) => {
         </USelectMenu>
       </UFormGroup>
       <UIcon name="i-game-icons-crossed-swords" class="text-[24px]"></UIcon>
-      <UFormGroup :ui="{ wrapper: 'xsm:w-[calc(50%-30px)] w-full' }" name="general2">
+      <UFormGroup :ui="{ wrapper: 'xsm:w-[calc(50%-30px)] lg:w-full w-full' }" name="general2">
         <USelectMenu 
           :options="list"
           searchable
