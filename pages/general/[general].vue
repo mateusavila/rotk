@@ -73,6 +73,16 @@ useSeoMeta({
               <h2 class="font-['Aleo'] text-[24px] font-black">Search</h2>
               <Search :list="names" :fullsize="true" base-url="../" />
             </div>
+            <div class="w-full mb-[20px]" v-if="generalInfo.generals && generalInfo.generals.length">
+              <h2 class="font-['Aleo'] text-[24px] font-black">Relatives</h2>
+              <div class="grid lg:grid-cols-5 ms:grid-cols-3 grid-cols-2 gap-[10px]">
+                <UTooltip v-for="general, index in generalInfo.generals" :text="general.name">
+                  <nuxt-link :key="index" :to="`/general/${general.slug}`">
+                    <img :src="`/${general.avatar}`" :alt="general.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow" />
+                  </nuxt-link>
+                </UTooltip>
+              </div>
+            </div>
             <div class="w-full mb-[20px]">
               <h2 class="font-['Aleo'] text-[24px] font-black">Secondary Skills</h2>
               <SecondarySkills 
