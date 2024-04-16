@@ -2,10 +2,6 @@
 import { useStorage } from '@vueuse/core'
 import type { GeneralData, NamesGenerals } from '~/utils'
 
-useHead({
-  title: 'Romance of Three Kingdoms Database'
-})
-
 const { params: { general } } = useRoute()
 const { pending, data: generalInfo } = await useLazyAsyncData('data', () => $fetch<GeneralData>(`/api/general/${general}`))
 
@@ -13,7 +9,7 @@ const names = useStorage<NamesGenerals[]>('names', [])
 const { rating } = useRatings()
 
 useSeoMeta({
-  title: `${generalInfo.value?.name} | Romance of Three Kingdoms Database`,
+  title: () => `${generalInfo.value?.name} | Romance of Three Kingdoms Database`,
   ogTitle: `${generalInfo.value?.name} | Romance of Three Kingdoms Database`,
   description: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
   ogDescription: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
@@ -74,7 +70,7 @@ useSeoMeta({
               <Search :list="names" :fullsize="true" base-url="../" />
             </div>
             <div class="w-full mb-[20px]" v-if="generalInfo.generals && generalInfo.generals.length">
-              <h2 class="font-['Aleo'] text-[24px] font-black">Relatives</h2>
+              <h2 class="font-['Aleo'] text-[24px] font-black">With same surname</h2>
               <div class="grid lg:grid-cols-5 ms:grid-cols-3 grid-cols-2 gap-[10px]">
                 <UTooltip v-for="general, index in generalInfo.generals" :text="general.name">
                   <nuxt-link :key="index" :to="`/general/${general.slug}`">

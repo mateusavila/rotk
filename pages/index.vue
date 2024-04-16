@@ -2,12 +2,8 @@
 import { useStorage } from "@vueuse/core";
 import type { FamousGenerals, NamesGenerals } from "~/utils";
 
-useHead({
-  title: "Romance of Three Kingdoms Database",
-});
-
 useSeoMeta({
-  title: "Romance of Three Kingdoms Database",
+  title: () => "Romance of Three Kingdoms Database",
   ogTitle: "Romance of Three Kingdoms Database",
   description:
     "This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.",

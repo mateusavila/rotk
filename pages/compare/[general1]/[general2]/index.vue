@@ -6,12 +6,8 @@ import type { FamousGenerals, NamesGenerals } from '~/utils'
   transform: (_data: any) => _data.data
 })
 
-useHead({
-  title: 'Romance of Three Kingdoms Database'
-})
-
 useSeoMeta({
-  title: 'Romance of Three Kingdoms Database',
+  title: () => 'Romance of Three Kingdoms Database',
   ogTitle: 'Romance of Three Kingdoms Database',
   description: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
   ogDescription: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',

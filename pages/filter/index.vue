@@ -122,6 +122,17 @@ const getTheType = (type: string) => {
   }
   return 'i-heroicons-bars-2'
 }
+
+useSeoMeta({
+  title: () => `Romance of Three Kingdoms Database`,
+  ogTitle: `Romance of Three Kingdoms Database`,
+  description: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
+  ogDescription: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
+  keywords: 'Romance of Three Kingdoms, ROTK, Database, Generals, Zhuge Liang, Cao Cao, Zhao Yun, Liu Bei, Three Kingdoms',
+  robots: 'index, follow',
+  contentType: 'text/html; charset=utf-8',
+  author: 'Mateus Ávila Isidoro'
+})
 </script>
 
 <template>

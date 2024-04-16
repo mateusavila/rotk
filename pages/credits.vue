@@ -7,7 +7,7 @@ const { data } = await useFetch<PageSlugResponseItem>(`/api/pages/slug/credits`,
 })
 
 useSeoMeta({
-  title: 'Credits | Romance of Three Kingdoms Database',
+  title: () => 'Credits | Romance of Three Kingdoms Database',
   ogTitle: 'Credits | Romance of Three Kingdoms Database',
   description: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
   ogDescription: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
