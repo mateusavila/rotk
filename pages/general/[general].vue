@@ -18,6 +18,42 @@ useSeoMeta({
   contentType: 'text/html; charset=utf-8',
   author: 'Mateus Ávila Isidoro'
 })
+
+// chart
+const chartOptions = ref({
+  chart: {
+    height: 120,
+    width: 120,
+    type: 'radar',
+    toolbar: {
+      show: false
+    },
+  },
+  dataLabels: {
+    enabled: true,
+    background: {
+      enabled: true,
+      borderRadius:2,
+    }
+  },
+  xaxis: {
+    categories: ['intl', 'cha', 'power', 'lead', 'pol']
+  },
+  yaxis: {
+    show: false
+  }
+})
+
+const series = ref<{ name: string, data: number[] }[]>([{
+  name: 'Stats',
+  data: [],
+}])
+
+watch(() => generalInfo.value, (info) => {
+  if (info && info.advanced_stats.stats_averages) {
+    series.value[0].data = [info.advanced_stats.stats_averages.intelligence ?? 0, info.advanced_stats.stats_averages.charisma ?? 0, info.advanced_stats.stats_averages.power ?? 0, info.advanced_stats.stats_averages.lead ?? 0, info.advanced_stats.stats_averages.politics ?? 0 ]
+  }
+}, { immediate: true, deep: true })
 </script>
 
 <template>
@@ -65,6 +101,14 @@ useSeoMeta({
             </div>
           </div>
           <div class="lg:w-[calc(30%-20px)] w-full">
+            <div class="w-full">
+              <h2 class="font-['Aleo'] text-[24px] font-black">Overall</h2>
+              <ClientOnly>
+              <div class="w-full h-[290px] flex justify-center">
+                <apexchart type="radar" height="290" :options="chartOptions" :series="series"></apexchart>
+              </div>
+            </ClientOnly>
+            </div>
             <div class="w-full mb-[20px]" v-if="names">
               <h2 class="font-['Aleo'] text-[24px] font-black">Search</h2>
               <Search :list="names" :fullsize="true" base-url="../" />

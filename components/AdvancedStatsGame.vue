@@ -29,7 +29,120 @@ const tabs = [
     label: 'Worst Possible',
   }
 ]
-// 
+// chart
+
+const series = ref([{
+    name: "Average per game",
+    data: [
+      stats.averages_per_game.rotk1 ?? 0,
+      stats.averages_per_game.rotk2 ?? 0,
+      stats.averages_per_game.rotk3 ?? 0,
+      stats.averages_per_game.rotk4 ?? 0,
+      stats.averages_per_game.rotk7 ?? 0,
+      stats.averages_per_game.rotk8 ?? 0,
+      stats.averages_per_game.rotk9 ?? 0,
+      stats.averages_per_game.rotk10 ?? 0,
+      stats.averages_per_game.rotk1 ?? 0,
+    ]
+}])
+const seriesTotals = ref([{
+    name: "Totals per game",
+    data: [
+      stats.totals_per_game.rotk1 ?? 0,
+      stats.totals_per_game.rotk2 ?? 0,
+      stats.totals_per_game.rotk3 ?? 0,
+      stats.totals_per_game.rotk4 ?? 0,
+      stats.totals_per_game.rotk7 ?? 0,
+      stats.totals_per_game.rotk8 ?? 0,
+      stats.totals_per_game.rotk9 ?? 0,
+      stats.totals_per_game.rotk10 ?? 0,
+      stats.totals_per_game.rotk1 ?? 0,
+    ]
+}])
+const chartOptions = ref({
+  chart: {
+    type: 'area',
+    height: 300,
+    width: 'auto',
+    zoom: {
+      enabled: false
+    },
+    
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  title: {
+    text: 'Average Evolution By Game',
+    align: 'left'
+  },
+  markers: {
+    size: 5,
+    hover: {
+      size: 9
+    }
+  },
+  xaxis: {
+    categories: ['ROTK 1', 'ROTK 2', 'ROTK 3', 'ROTK 4', 'ROTK 7', 'ROTK 8', 'ROTK 9', 'ROTK 10', 'ROTK 11']
+  },
+  yaxis: {
+    opposite: true,
+    min: 0,
+    max: 100,
+    tickAmount: 5,
+    labels: {
+      formatter: (val: number) => `${val}`
+    }
+  },
+  legend: {
+    horizontalAlign: 'left'
+  }
+})
+const chartOptionsTotals = ref({
+  chart: {
+    type: 'area',
+    height: 300,
+    width: 'auto',
+    zoom: {
+      enabled: false
+    },
+    
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  title: {
+    text: 'Average Evolution By Game',
+    align: 'left'
+  },
+  markers: {
+    size: 5,
+    hover: {
+      size: 9
+    }
+  },
+  xaxis: {
+    categories: ['ROTK 1', 'ROTK 2', 'ROTK 3', 'ROTK 4', 'ROTK 7', 'ROTK 8', 'ROTK 9', 'ROTK 10', 'ROTK 11']
+  },
+  yaxis: {
+    opposite: true,
+    min: 0,
+    max: 500,
+    tickAmount: 5,
+    labels: {
+      formatter: (val: number) => `${val}`
+    }
+  },
+  legend: {
+    horizontalAlign: 'left'
+  }
+})
 </script>
 
 <template>
@@ -38,101 +151,23 @@ const tabs = [
       <template #item="{ item }">
         <UCard>
           <template v-if="item.key === 'averages_per_game'">
-            <div class="w-full grid lg:grid-cols-9 sm:grid-cols-4 xxsm:grid-cols-2 gap-[20px]">
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk1">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.averages_per_game.rotk1">{{ stats.averages_per_game.rotk1 }}</p>
-                <p class="text-[12px] text-center">ROTK 1</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk2">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk2">{{ stats.averages_per_game.rotk2 }}</p>
-                <p class="text-[12px] text-center">ROTK 2</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk3">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk3">{{ stats.averages_per_game.rotk3 }}</p>
-                <p class="text-[12px] text-center">ROTK 3</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk4">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk4">{{ stats.averages_per_game.rotk4 }}</p>
-                <p class="text-[12px] text-center">ROTK 4</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk7">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk7">{{ stats.averages_per_game.rotk7 }}</p>
-                <p class="text-[12px] text-center">ROTK 7</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk8">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk8">{{ stats.averages_per_game.rotk8 }}</p>
-                <p class="text-[12px] text-center">ROTK 8</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk9">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk9">{{ stats.averages_per_game.rotk9 }}</p>
-                <p class="text-[12px] text-center">ROTK 9</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk10">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk10">{{ stats.averages_per_game.rotk10 }}</p>
-                <p class="text-[12px] text-center">ROTK 10</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.averages_per_game.rotk11">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black"  v-if="stats.averages_per_game.rotk11">{{ stats.averages_per_game.rotk11 }}</p>
-                <p class="text-[12px] text-center">ROTK 11</p>
-              </div>
+            <div class="w-full">
+              <ClientOnly>
+                <div class="w-full h-[300px]">
+                  <apexchart type="area" height="300" 
+                  width="100%" :options="chartOptions" :series="series"></apexchart>
+                </div>
+              </ClientOnly>
             </div>
           </template>
           <template v-if="item.key === 'totals_per_game'">
-            <div class="w-full grid lg:grid-cols-9 sm:grid-cols-4 xxsm:grid-cols-2 gap-[20px]">
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk1">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk1">{{ stats.totals_per_game.rotk1 }}</p>
-                <p class="text-[12px] text-center">ROTK 1</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk2">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk2">{{ stats.totals_per_game.rotk2 }}</p>
-                <p class="text-[12px] text-center">ROTK 2</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk3">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk3">{{ stats.totals_per_game.rotk3 }}</p>
-                <p class="text-[12px] text-center">ROTK 3</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk4">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk4">{{ stats.totals_per_game.rotk4 }}</p>
-                <p class="text-[12px] text-center">ROTK 4</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk7">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk7">{{ stats.totals_per_game.rotk7 }}</p>
-                <p class="text-[12px] text-center">ROTK 7</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk8">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk8">{{ stats.totals_per_game.rotk8 }}</p>
-                <p class="text-[12px] text-center">ROTK 8</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk9">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk9">{{ stats.totals_per_game.rotk9 }}</p>
-                <p class="text-[12px] text-center">ROTK 9</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk10">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk10">{{ stats.totals_per_game.rotk10 }}</p>
-                <p class="text-[12px] text-center">ROTK 10</p>
-              </div>
-              <div class="w-full">
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="!stats.totals_per_game.rotk11">absent</p>
-                <p class="text-[24px] w-full leading-[24px] text-center font-['Aleo'] font-black" v-if="stats.totals_per_game.rotk11">{{ stats.totals_per_game.rotk11 }}</p>
-                <p class="text-[12px] text-center">ROTK 11</p>
-              </div>
+            <div class="w-full">
+              <ClientOnly>
+                <div class="w-full h-[300px]">
+                  <apexchart type="area" height="300" 
+                  width="100%" :options="chartOptionsTotals" :series="seriesTotals"></apexchart>
+                </div>
+              </ClientOnly>
             </div>
           </template>
           <template v-if="item.key === 'stats_averages'">
