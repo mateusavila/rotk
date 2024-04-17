@@ -1,4 +1,4 @@
-import { generals } from "../../schemas"
+import { generals, hiperlinks } from "../../schemas"
 import { eq, like, and, ne } from 'drizzle-orm'
 
 export default defineCachedEventHandler(async (event) => {
@@ -21,7 +21,9 @@ export default defineCachedEventHandler(async (event) => {
 
   const otherGenerals = (surname && await client.select().from(generals).where(and(like(generals.name, `${surname}%`), ne(generals.name, (data[0].name ?? '')))).all()) ?? []
 
-  return { ...data[0], generals: otherGenerals }
+  const links = await client.select().from(hiperlinks).where(eq(hiperlinks.slug, slug))
+
+  return { ...data[0], generals: otherGenerals, hiperlinks: links }
 }, {
   maxAge: 60 * 60 * 24 * 7,
   getKey: (event) => {

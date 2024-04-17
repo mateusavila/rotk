@@ -1,7 +1,8 @@
-import { generals } from "../../schemas"
+import { generals, hiperlinks } from "../../schemas"
 import { eq } from 'drizzle-orm'
 import { jwtVerify } from 'jose'
-import { generalInfoSchema } from "~/utils"
+import { AddLinks, generalInfoSchema } from "~/utils"
+import crypto from "crypto"
 
 export default defineEventHandler(async (event) => {
   const client = useTurso()
@@ -12,7 +13,6 @@ export default defineEventHandler(async (event) => {
       message: 'No general has been found'
     }
   }
-
 
   const token = getHeader(event, 'Authorization')?.split('Bearer ')[1] ?? ''
 
@@ -47,7 +47,18 @@ export default defineEventHandler(async (event) => {
 
 
   try {
+
+    const hiperlinksArr = body.hiperlinks.map(({ url, label }: AddLinks) => {
+      return {
+        id: crypto.randomUUID(),
+        slug: body.slug,
+        url,
+        label
+      }
+    })
     await client.update(generals).set(body).where(eq(generals.id, id))
+    await client.delete(hiperlinks).where(eq(hiperlinks.slug, body.slug))
+    await client.insert(hiperlinks).values(hiperlinksArr)
     return {
       status: true,
       message: 'Success! General has been updated!'

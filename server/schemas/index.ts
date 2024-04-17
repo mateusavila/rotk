@@ -35,6 +35,7 @@ export const generals = sqliteTable("generals", {
   skills: text("skills", { mode: "json" }),
   bio: text("bio"),
   birth: integer("birth", { mode: "number" }),
+  death: integer("death", { mode: "number" }),
   luck: integer("luck", { mode: "number" }),
   health: integer("health", { mode: "number" }),
   soldiers: integer("soldiers", { mode: "number" }),
@@ -54,5 +55,18 @@ export const generalStats = sqliteTable("generalStats", {
   game: text("game"),
   stat: text("stat"),
   value: integer("value", { mode: "number" })
+})
+
+export const hiperlinks = sqliteTable("hiperlinks", {
+  id: text("id").primaryKey(),
+  slug: text("slug"),
+  label: text("label"),
+  url: text("url")
+})
+
+export const rival = sqliteTable("rival", {
+  id: text("id").primaryKey(),
+  slug: text("slug"),
+  rival: text("rival")
 })
 

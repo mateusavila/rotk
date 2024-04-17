@@ -142,15 +142,17 @@ const onSubmit = async(event: FormSubmitEvent<GeneralInfoSchema>) => {
   isOpen.value = true
   loading.value = true
 
-  const { name, bio, skills, birth, luck, health, soldiers, loyalty, navigation, is_ruler, navy_command, army_command, stats } = event.data
+  const { name, bio, skills, birth, luck, health, soldiers, loyalty, navigation, is_ruler, navy_command, army_command, stats, hiperlinks, death } = event.data
 
   const body = {
     name, 
+    hiperlinks,
     slug: slugConverter(name),
     avatar: `${slugConverter(name)}.avif`,
     skills: toRaw(skills), 
     bio, 
     birth, 
+    death,
     luck, 
     health, 
     soldiers, 
@@ -265,6 +267,10 @@ const skills = ['Foreign', 'Spy', 'Recruit', 'Build', 'Bribe', 'Rebel', 'Gossip'
             <UInput v-model="data.birth" data-maska="###"
             v-maska></UInput>
           </UFormGroup>
+          <UFormGroup name="death" label="Death">
+            <UInput v-model="data.death" data-maska="###"
+            v-maska></UInput>
+          </UFormGroup>
           <UFormGroup name="luck" label="Luck">
             <UInput v-model="data.luck" data-maska="###"
             v-maska></UInput>
@@ -289,6 +295,10 @@ const skills = ['Foreign', 'Spy', 'Recruit', 'Build', 'Bribe', 'Rebel', 'Gossip'
             <UInput v-model="data.army_command" data-maska="###"
             v-maska></UInput>
           </UFormGroup>
+        </div>
+        <div class="w-full mt-[30px]">
+          <h2 class="font-['Aleo'] text-[20px] font-semibold mb-[20px]">Extra Information</h2>
+          <AddLinks v-model="data.hiperlinks" :list="data.hiperlinks" />
         </div>
         <div class="w-full mt-[30px]">
           <h2 class="font-['Aleo'] text-[20px] font-semibold mb-[20px]">Stats By Game</h2>

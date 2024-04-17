@@ -70,6 +70,7 @@ export const generalInfoSchema = z
     skills: z.array(z.string()),
     bio: z.string().optional(),
     birth: z.coerce.number().optional(),
+    death: z.coerce.number().optional().nullable(),
     luck: z.coerce.number(),
     health: z.coerce.number().min(1).max(100),
     soldiers: z.coerce.number().min(100).max(100000),
@@ -78,6 +79,10 @@ export const generalInfoSchema = z
     is_ruler: z.boolean(),
     navy_command: z.coerce.number().min(1).max(100),
     army_command: z.coerce.number().min(1).max(100),
+    hiperlinks: z.array(z.object({
+      url: z.string().url('Must be a URL'),
+      label: z.string().min(1, 'Must describe the URL')
+    })),
     stats: z.object({
       rotk1: z.boolean().or(
         z.object({
@@ -291,6 +296,7 @@ export interface NamesGenerals {
 
 export interface GeneralData {
   generals: GeneralData[]
+  hiperlinks: AddLinks[]
   id: string
   name: string
   avatar: string
@@ -298,6 +304,7 @@ export interface GeneralData {
   skills: string[]
   bio: string
   birth: number | string
+  death: number | string
   luck: number
   soldiers: number
   loyalty: number
@@ -423,6 +430,11 @@ export interface CustomFields {
   key: string
   value: string | any
   type: string
+}
+
+export interface AddLinks {
+  url: string
+  label: string
 }
 
 export interface OptionsSelect {
