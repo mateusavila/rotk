@@ -43,7 +43,7 @@ useSeoMeta({
           </div>
           <div class="sm:w-[calc(100%-180px)] w-full">
             <h1 class="sm:text-[40px] text-[30px] font-['Aleo'] font-black w-full m-0">{{ generalInfo.name }}</h1>
-            <p class="w-full text-[16px] m-0">Birth: {{ generalInfo.birth }}</p>
+            <p class="w-full text-[16px] m-0">Birth: {{ generalInfo.birth }} <span v-if="generalInfo.death">| Death: {{ generalInfo.death }}</span></p>
             <SkillsBox :skills="generalInfo.skills" />
             <RatingBadge position="absolute" size="big" :rating="rating(generalInfo.advanced_stats)" rounded="lg:rounded-[20px] rounded-[10px]" />
           </div>
@@ -71,12 +71,22 @@ useSeoMeta({
             </div>
             <div class="w-full mb-[20px]" v-if="generalInfo.generals && generalInfo.generals.length">
               <h2 class="font-['Aleo'] text-[24px] font-black">With same surname</h2>
-              <div class="grid lg:grid-cols-5 ms:grid-cols-3 grid-cols-2 gap-[10px]">
+              <div class="grid lg:grid-cols-5 ms:grid-cols-3 grid-cols-2 gap-[10px] mt-[5px]">
                 <UTooltip v-for="general, index in generalInfo.generals" :text="general.name">
                   <nuxt-link :key="index" :to="`/general/${general.slug}`">
                     <img :src="`/${general.avatar}`" :alt="general.name" width="256" height="256" loading="lazy" class="w-full h-auto block rounded-[10px] shadow" />
                   </nuxt-link>
                 </UTooltip>
+              </div>
+            </div>
+            <div class="w-full mb-[20px]" v-if="generalInfo.hiperlinks">
+              <h2 class="font-['Aleo'] text-[24px] font-black">Extra information</h2>
+              <div class="w-full mt-[10px]">
+                <ul>
+                  <li v-for="item, index in generalInfo.hiperlinks" :key="index">
+                    &bull; <nuxt-link :to="item.url" :external="true" class="hover:underline" target="_blank">{{ item.label }}</nuxt-link>
+                  </li>
+                </ul>
               </div>
             </div>
             <div class="w-full mb-[20px]">
