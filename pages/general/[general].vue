@@ -79,7 +79,7 @@ useSeoMeta({
                 </UTooltip>
               </div>
             </div>
-            <div class="w-full mb-[20px]" v-if="generalInfo.hiperlinks">
+            <div class="w-full mb-[20px]" v-if="generalInfo.hiperlinks && generalInfo.hiperlinks.length">
               <h2 class="font-['Aleo'] text-[24px] font-black">Extra information</h2>
               <div class="w-full mt-[10px]">
                 <ul>
