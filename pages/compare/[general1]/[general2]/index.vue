@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useStorage } from '@vueuse/core'
-import type { FamousGenerals, NamesGenerals } from '~/utils'
+import type { NamesGenerals } from '~/utils'
   const { params: { general1, general2 } } = useRoute()
   const { data } = await useFetch<GeneralData[]>(`/api/compare/${general1},${general2}`, {
   transform: (_data: any) => _data.data
@@ -33,6 +33,31 @@ const namesList = async (): Promise<NamesGenerals[]> => {
   }))
 }
 const names = useStorage<NamesGenerals[]>('names', await namesList())
+
+// radar
+
+const { chartOptions } = useRadarGraph() 
+
+const series1 = ref<{ name: string, data: number[] }[]>([{
+  name: 'Stats',
+  data: [],
+}]) 
+const series2 = ref<{ name: string, data: number[] }[]>([{
+  name: 'Stats',
+  data: [],
+}]) 
+
+watch(() => general1Info.value, (info) => {
+  if (info && info.advanced_stats.stats_averages) {
+    series1.value[0].data = [info.advanced_stats.stats_averages.intelligence ?? 0, info.advanced_stats.stats_averages.charisma ?? 0, info.advanced_stats.stats_averages.power ?? 0, info.advanced_stats.stats_averages.lead ?? 0, info.advanced_stats.stats_averages.politics ?? 0 ]
+  }
+}, { immediate: true, deep: true })
+
+watch(() => general2Info.value, (info) => {
+  if (info && info.advanced_stats.stats_averages) {
+    series2.value[0].data = [info.advanced_stats.stats_averages.intelligence ?? 0, info.advanced_stats.stats_averages.charisma ?? 0, info.advanced_stats.stats_averages.power ?? 0, info.advanced_stats.stats_averages.lead ?? 0, info.advanced_stats.stats_averages.politics ?? 0 ]
+  }
+}, { immediate: true, deep: true })
 </script>
 
 <template>
@@ -77,29 +102,46 @@ const names = useStorage<NamesGenerals[]>('names', await namesList())
               <td class="border border-slate-200 p-[8px] bg-gray-50 text-left w-[calc(50%-50px)]">{{ general2Info.skills.join(', ') }}</td>
             </tr>
             <tr class="border border-slate-200">
-              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]">{{ general1Info.health }}</td>
-              <td class="border border-slate-200 p-[8px] bg-white text-center w-[100px] font-semibold">Health</td>
-              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]">{{ general2Info.health }}</td>
-            </tr>
-            <tr class="border border-slate-200">
               <td class="border border-slate-200 p-[8px] bg-gray-50 text-right w-[calc(50%-50px)]">{{ general1Info.soldiers}}</td>
               <td class="border border-slate-200 p-[8px] bg-gray-50 text-center w-[100px] font-semibold">Soldiers</td>
               <td class="border border-slate-200 p-[8px] bg-gray-50 text-left w-[calc(50%-50px)]">{{ general2Info.soldiers}}</td>
             </tr>
             <tr class="border border-slate-200">
-              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]">{{ general1Info.loyalty }}</td>
+              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]"><RatingBadge class="float-right" position="" size="smallest" :rating="general1Info.health ?? 'X'" rounded="rounded-[6px]" /></td>
+              <td class="border border-slate-200 p-[8px] bg-white text-center w-[100px] font-semibold">Health</td>
+              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]"><RatingBadge class="float-left" position="" size="smallest" :rating="general2Info.health ?? 'X'" rounded="rounded-[6px]" /></td>
+            </tr>
+            <tr class="border border-slate-200">
+              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]"><RatingBadge class="float-right" position="" size="smallest" :rating="general1Info.loyalty ?? 'X'" rounded="rounded-[6px]" /></td>
               <td class="border border-slate-200 p-[8px] bg-white text-center w-[100px] font-semibold">Loyalty</td>
-              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]">{{ general2Info.loyalty }}</td>
+              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]"><RatingBadge class="float-left" position="" size="smallest" :rating="general2Info.loyalty ?? 'X'" rounded="rounded-[6px]" /></td>
             </tr>
             <tr class="border border-slate-200">
-              <td class="border border-slate-200 p-[8px] bg-gray-50 text-right w-[calc(50%-50px)]">{{ general1Info.navy_command}}</td>
+              <td class="border border-slate-200 p-[8px] bg-gray-50 text-right w-[calc(50%-50px)]"><RatingBadge class="float-right" position="" size="smallest" :rating="general1Info.navy_command ?? 'X'" rounded="rounded-[6px]" /></td>
               <td class="border border-slate-200 p-[8px] bg-gray-50 text-center w-[100px] font-semibold">Navy Cmd.</td>
-              <td class="border border-slate-200 p-[8px] bg-gray-50 text-left w-[calc(50%-50px)]">{{ general2Info.navy_command}}</td>
+              <td class="border border-slate-200 p-[8px] bg-gray-50 text-left w-[calc(50%-50px)]"><RatingBadge class="float-left" position="" size="smallest" :rating="general2Info.navy_command ?? 'X'" rounded="rounded-[6px]" /></td>
             </tr>
             <tr class="border border-slate-200">
-              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]">{{ general1Info.army_command }}</td>
+              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]"><RatingBadge class="float-right" position="" size="smallest" :rating="general1Info.army_command ?? 'X'" rounded="rounded-[6px]" /></td>
               <td class="border border-slate-200 p-[8px] bg-white text-center w-[100px] font-semibold">Army Cmd.</td>
-              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]">{{ general2Info.army_command }}</td>
+              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]"><RatingBadge class="float-left" position="" size="smallest" :rating="general2Info.army_command ?? 'X'" rounded="rounded-[6px]" /></td>
+            </tr>
+            <tr class="border border-slate-200">
+              <td class="border border-slate-200 p-[8px] bg-white text-right w-[calc(50%-50px)]">
+                <ClientOnly>
+                  <div class="w-full h-[290px] flex justify-center">
+                    <apexchart type="radar" height="290" :options="chartOptions" :series="series1"></apexchart>
+                  </div>
+                </ClientOnly>
+              </td>
+              <td class="border border-slate-200 p-[8px] bg-white text-center w-[100px] font-semibold">Overall</td>
+              <td class="border border-slate-200 p-[8px] bg-white text-left w-[calc(50%-50px)]">
+                <ClientOnly>
+                  <div class="w-full h-[290px] flex justify-center">
+                    <apexchart type="radar" height="290" :options="chartOptions" :series="series2"></apexchart>
+                  </div>
+                </ClientOnly>
+              </td>
             </tr>
           </tbody>
         </table>

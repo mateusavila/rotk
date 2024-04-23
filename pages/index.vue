@@ -320,10 +320,7 @@ const names = useStorage<NamesGenerals[]>("names", await namesList());
 
 const openModal = ref(false);
 const open = () => (openModal.value = true);
-
-const close = async (queryString: string) => {
-  await navigateTo(`/filter?page=1&${queryString}`);
-}
+const close = async (queryString: string) => await navigateTo(`/filter?page=1&${queryString}`);
 </script>
 
 <template>

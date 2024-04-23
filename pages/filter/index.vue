@@ -1,13 +1,12 @@
 <script setup lang="ts">
 const query = useRoute().query;
 const filter = useRoute().fullPath;
-
 const { rating } = useRatings()
 const page = ref(1);
 const q = ref()
 q.value = query
 const params = ref({ page });
-const { data, pending  } = await useFetch(`/api${filter}`, {
+const { data } = await useFetch(`/api${filter}`, {
   params,
   watch: [params],
   transform: (_data: { data: any; total: number }) => {
@@ -111,7 +110,6 @@ const close = async (queryString: string) => {
   await navigateTo(`/filter?page=1&${queryString}`);
   window.location.reload()
 }
-
 
 const getTheType = (type: string) => {
   if (type === 'gt') {

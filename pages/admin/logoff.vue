@@ -3,14 +3,12 @@ import { useUserStore } from '../../stores/user'
 definePageMeta({
   middleware: ["auth"]
 })
-
 onMounted(async () => { 
   const user = useUserStore()
   user.$reset()
   window.localStorage.clear()
   await navigateTo('/admin') 
 })
-
 </script>
 
 <template>

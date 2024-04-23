@@ -16,7 +16,6 @@ useSeoMeta({
   contentType: 'text/html; charset=utf-8',
   author: 'Mateus Ávila Isidoro'
 })
-
 </script>
 
 <template>

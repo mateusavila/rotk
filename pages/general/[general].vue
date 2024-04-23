@@ -10,7 +10,7 @@ const { rating } = useRatings()
 
 useSeoMeta({
   title: () => `${generalInfo.value?.name} | Romance of Three Kingdoms Database`,
-  ogTitle: `${generalInfo.value?.name} | Romance of Three Kingdoms Database`,
+  ogTitle: () => `${generalInfo.value?.name} | Romance of Three Kingdoms Database`,
   description: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
   ogDescription: 'This website collects all the stats for the Romance of Three Kingdoms games, produced by Koei.',
   keywords: 'Romance of Three Kingdoms, ROTK, Database, Generals, Zhuge Liang, Cao Cao, Zhao Yun, Liu Bei, Three Kingdoms',
@@ -20,34 +20,8 @@ useSeoMeta({
 })
 
 // chart
-const chartOptions = ref({
-  chart: {
-    height: 120,
-    width: 120,
-    type: 'radar',
-    toolbar: {
-      show: false
-    },
-  },
-  dataLabels: {
-    enabled: true,
-    background: {
-      enabled: true,
-      borderRadius:2,
-    }
-  },
-  xaxis: {
-    categories: ['intl', 'cha', 'power', 'lead', 'pol']
-  },
-  yaxis: {
-    show: false
-  }
-})
 
-const series = ref<{ name: string, data: number[] }[]>([{
-  name: 'Stats',
-  data: [],
-}])
+const { series, chartOptions } = useRadarGraph()
 
 watch(() => generalInfo.value, (info) => {
   if (info && info.advanced_stats.stats_averages) {
