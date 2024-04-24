@@ -5,8 +5,6 @@ const { rating, size = 'big', position = 'absolute', rounded } = defineProps<{
   position?: string,
   rounded?: string
 }>()
-
-const rat = +rating
 </script>
 
 <template>
@@ -17,7 +15,7 @@ const rat = +rating
     'w-[30px] h-[24px]': size === 'smallest',
     'absolute lg:top-[50%] sm:top-auto top-[30px] lg:right-[20px] sm:right-auto right-[30px] lg:translate-y-[-50%] lg:left-auto sm:left-[125px] left-auto lg:bottom-auto sm:bottom-[20px] bottom-auto': position === 'absolute',
     'bg-gradient-to-bl from-[#000] via-[#400000] to-[#562683] text-white': +rating >= 100,
-    'bg-gradient-to-bl from-[#188fff] via-[#e1a6e7] to-[#f9a205] text-white': rating === 99,
+    'bg-gradient-to-bl from-[#188fff] via-[#e1a6e7] to-[#f9a205] text-white': +rating === 99,
     'bg-gradient-to-bl from-[#ff96df] to-[#ad388a] text-white': typeof rating === 'number' && rating > 96 && rating <= 98,
     'bg-gradient-to-bl from-[#00aace] to-[#005668] text-white': typeof rating === 'number' && rating > 92 && rating <= 96,
     'bg-gradient-to-bl from-[#a51fff] to-[#5b1c86] text-white': typeof rating === 'number' && rating > 89 && rating <= 92,

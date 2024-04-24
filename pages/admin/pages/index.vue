@@ -3,6 +3,9 @@ import { refDebounced } from '@vueuse/core'
 definePageMeta({
   middleware: ["auth"]
 })
+useHead({
+    title: 'Pages | Romance of Three Kingdoms Database'
+  })
 
 const toast = useToast()
 const search = ref('')

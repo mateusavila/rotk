@@ -20,7 +20,6 @@ useSeoMeta({
 })
 
 // chart
-
 const { series, chartOptions } = useRadarGraph()
 
 watch(() => generalInfo.value, (info) => {

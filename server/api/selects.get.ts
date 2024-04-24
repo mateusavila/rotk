@@ -10,11 +10,7 @@ export default defineEventHandler(async (event) => {
   const { term, _type, q } = query
   const client = useTurso()
   if (!term) {
-    const results = await client.select({
-      text: generals.name,
-      id: generals.slug
-    }).from(generals).orderBy(generals.name).all()
-    return { results }
+    return { results: [] }
   }
 
   const results = await client.select({

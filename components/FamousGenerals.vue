@@ -22,4 +22,4 @@ const { title, list } = defineProps<ComponentInterface>()
       </ULink>
     </div>
   </div>
-</template>~/utils
+</template>

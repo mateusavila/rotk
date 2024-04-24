@@ -54,7 +54,6 @@ const onSubmit = async(event: FormSubmitEvent<PageSchema>) => {
         'Authorization': `Bearer ${token}`
       }
     })
-    // console.log(response)
     loading.value = false
     result.value = {
       title: 'Success',

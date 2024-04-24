@@ -4,11 +4,7 @@ import type { FieldsComponents, FieldsComponentsChild } from '~/utils/design'
 const { type, id, options, fields } = defineProps<FieldsComponents>()
 
 const model = defineModel<string | number | Record<string, any> | unknown[] | undefined | any>()
-
-// selectmenu
 const current = computed(() => options && options.find((item) => item.value === model.value))
-
-// password
 const passwordType = ref<boolean>(true)
 
 // upload

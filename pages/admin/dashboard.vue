@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+useHead({
+    title: 'Dashboard | Romance of Three Kingdoms Database'
+  })
 definePageMeta({
   middleware: ["auth"]
 })

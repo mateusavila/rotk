@@ -1,11 +1,7 @@
 <script setup lang="ts">
-useHead({
-  title: 'Credits | Romance of Three Kingdoms Database'
-})
 const { data } = await useFetch<PageSlugResponseItem>(`/api/pages/slug/credits`, {
   transform: (_data: any) => _data.data
 })
-
 useSeoMeta({
   title: () => 'Credits | Romance of Three Kingdoms Database',
   ogTitle: 'Credits | Romance of Three Kingdoms Database',
