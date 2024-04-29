@@ -85,7 +85,7 @@ export default defineEventHandler(async (event) => {
     return { results: [] }
   }
 
-  const results = list.filter((item) => item.text.includes(`${term}`))
+  const results = list.filter((item) => item.text.toLowerCase().includes(`${term}`.toLowerCase()))
 
 
   return { results }
